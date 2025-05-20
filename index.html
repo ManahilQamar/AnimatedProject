@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Glowing Balls Landing Page</title>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600&family=Poppins:wght@300;500;700&display=swap"
+    rel="stylesheet">
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      margin: 0;
+      background: radial-gradient(ellipse at center, #000 0%, #000 100%);
+      height: 100vh;
+      overflow: hidden;
+      font-family: 'Poppins', sans-serif;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+    }
+
+    .container {
+      position: relative;
+      width: 100px;
+      height: 100vh;
+    }
+
+    .ball {
+      width: 200px;
+      height: 200px;
+      background: radial-gradient(circle, rgb(1, 67, 72) 0%, rgba(0, 255, 255) 100%);
+      border-radius: 50%;
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%) scale(1);
+      box-shadow: 0 0 40px cyan;
+      animation: scaleUp 2s ease-in-out 4s forwards;
+    }
+
+    .ball::before {
+      content: "";
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: -1;
+    }
+
+    .top-ball::before {
+      top: 82%;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 190px;
+      height: 60px;
+      background: radial-gradient(ellipse at top, rgba(254, 252, 252, 0.845), transparent 80%);
+      filter: blur(10px);
+    }
+
+    .bottom-ball::before {
+      bottom: 82%;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 190px;
+      height: 60px;
+      background: radial-gradient(ellipse at bottom, rgba(254, 252, 252, 0.845), transparent 80%);
+      filter: blur(10px);
+    }
+
+    .top-ball {
+      top: -250px;
+      animation: moveTop 1s ease-in forwards, scaleUp 2s ease-in-out 1s forwards;
+    }
+
+    .bottom-ball {
+      bottom: -250px;
+      animation: moveBottom 1s ease-in forwards, scaleUp 2s ease-in-out 1s forwards;
+    }
+
+    @keyframes moveTop {
+      to {
+        top: calc(50% - 280px);
+      }
+    }
+
+    @keyframes moveBottom {
+      to {
+        bottom: calc(50% - 280px);
+      }
+    }
+
+    @keyframes scaleUp {
+      to {
+        transform: translateX(-50%) scale(1.5);
+      }
+    }
+
+    /* Glass Landing Page Overlay */
+    .landing {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 20px;
+      backdrop-filter: blur(20px);
+      padding: 40px 60px;
+      max-width: 700px;
+      width: 90%;
+      text-align: center;
+      z-index: 10;
+    }
+
+    .landing h1 {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 3rem;
+      margin-bottom: 20px;
+      color: cyan;
+    }
+
+    .landing p {
+      font-size: 1.1rem;
+      color: #eee;
+      margin-bottom: 20px;
+    }
+
+    .ideas {
+      text-align: left;
+      margin-top: 30px;
+    }
+
+    .ideas h3 {
+      color: #0ff;
+      margin-bottom: 10px;
+    }
+
+    .ideas ul {
+      padding-left: 20px;
+    }
+
+    .ideas li {
+      margin-bottom: 6px;
+      font-size: 0.95rem;
+      color: #ccc;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <div class="ball top-ball"></div>
+    <div class="ball bottom-ball"></div>
+  </div>
+
+  <div class="landing">
+    <h1>@MenoCoder</h1>
+    <p>I create mind-blowing front-end animations and effects using pure HTML, CSS, and JavaScript.
+      My goal is to make coding visually exciting and educational for everyone.</p>
+
+    <div class="ideas">
+      <h3>🚀 Project Ideas:</h3>
+      <ul>
+        <li>3D Text Carousel with Lighting</li>
+        <li>Scroll-triggered Cinematic Animation</li>
+        <li>CSS-only Liquid Button</li>
+        <li>Interactive Typing Game</li>
+        <li>Custom Cursors with Trails</li>
+        <li>Animated Galaxy Background</li>
+      </ul>
+    </div>
+  </div>
+</body>
+
+</html>
