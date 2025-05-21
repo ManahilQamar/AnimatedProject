@@ -3,179 +3,769 @@
 
 <head>
   <meta charset="UTF-8">
-  <title>Glowing Balls Landing Page</title>
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600&family=Poppins:wght@300;500;700&display=swap"
+  <title>Manahil Qamar - Portfolio</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Audiowide&family=Outfit:wght@100..900&display=swap"
     rel="stylesheet">
   <style>
     * {
-      box-sizing: border-box;
       margin: 0;
       padding: 0;
+      box-sizing: border-box;
     }
 
     body {
-      margin: 0;
-      background: radial-gradient(ellipse at center, #000 0%, #000 100%);
-      height: 100vh;
+      font-family: 'Outfit', sans-serif;
+      background: #000;
+      color: #fff;
+      line-height: 1.6;
+    }
+
+    /* Glowing Threads */
+    .thread {
+      position: fixed;
+      width: 4px;
       overflow: hidden;
-      font-family: 'Poppins', sans-serif;
+      background: #0ff;
+      z-index: 999;
+      transition: height 0.4s ease-out;
+      box-shadow: 0 0 25px rgba(0, 255, 255, 0.5);
+      filter: brightness(1.5) drop-shadow(0 0 10px cyan);
+    }
+
+    .glow {
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(to bottom, rgba(0, 255, 255, 0.1), rgba(0, 255, 255, 0.9), rgba(0, 255, 255, 0.1));
+      background-size: 100% 300%;
+      filter: blur(2px);
+      opacity: 0.8;
+    }
+
+    @keyframes glowMove {
+      0% {
+        background-position: 0% 100%;
+        opacity: 0.6;
+      }
+
+      50% {
+        opacity: 1;
+      }
+
+      100% {
+        background-position: 0% 0%;
+        opacity: 0.6;
+      }
+    }
+
+    .glow.animate {
+      animation: glowMove 1.2s linear infinite;
+    }
+
+    .left-thread {
+      left: 20px;
+      top: 0;
+    }
+
+    .right-thread {
+      right: 20px;
+      top: 0;
+    }
+
+    /* Navigation */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      background: rgba(0, 0, 0, 0.9);
+      padding: 15px 20px;
       display: flex;
-      align-items: center;
-      justify-content: center;
-      color: white;
+      justify-content: space-between;
+      text-align: center;
+      z-index: 1000;
+      font-family: "Audiowide", cursive;
+      backdrop-filter: blur(5px);
+    }
+
+    nav a {
+      color: rgb(255, 255, 255);
+      text-shadow: 0 0 20px rgba(0, 255, 255, 0.5);
+      text-decoration: none;
+      margin: 0 15px;
+      font-size: 1.1rem;
+      transition: 0.3s;
+    }
+
+    nav a:hover {
+      text-shadow: 0 0 15px rgba(0, 255, 255, 0.7);
     }
 
     .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 100px 20px 50px;
+    }
+
+    section {
+      padding: 80px 0;
+      border-bottom: 1px solid rgba(0, 255, 255, 0.1);
+    }
+
+    .hero {
+      text-align: center;
+      font-family: "Audiowide", cursive;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .hero h1 {
+      font-size: 4.5rem;
+      margin-bottom: 20px;
+      text-shadow: 0 0 20px rgba(0, 255, 255, 0.5);
+      line-height: 1.1;
+    }
+
+    .hero p {
+      font-size: 1.5rem;
+      color: #273f37;
+      margin-top: 1rem;
+    }
+
+    h2 {
+      font-size: 2.5rem;
+      margin-bottom: 30px;
+      text-align: center;
+      text-shadow: 0 0 10px rgba(0, 255, 255, 0.3);
+    }
+
+    /* About Section */
+    .section-container {
+      padding: 4rem 1.5rem;
+    }
+
+    .about-content {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .section-title {
+      font-family: "Audiowide", cursive;
+      font-size: 3rem;
+      text-shadow: 0 0 20px rgba(0, 255, 255, 0.5);
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      margin-bottom: 2.5rem;
+      padding-bottom: 0.5rem;
       position: relative;
-      width: 100px;
-      height: 100vh;
+      text-align: center;
     }
 
-    .ball {
-      width: 200px;
-      height: 200px;
-      background: radial-gradient(circle, rgb(1, 67, 72) 0%, rgba(0, 255, 255) 100%);
-      border-radius: 50%;
+    .section-title::after {
+      content: '';
       position: absolute;
+      bottom: 0;
       left: 50%;
-      transform: translateX(-50%) scale(1);
-      box-shadow: 0 0 40px cyan;
-      animation: scaleUp 2s ease-in-out 4s forwards;
+      transform: translateX(-50%);
+      width: 100%;
+      max-width: 300px;
+      height: 3px;
+      background: linear-gradient(90deg, transparent, #0ff, transparent);
     }
 
-    .ball::before {
-      content: "";
+    .about-details {
+      background: rgba(255, 255, 255, 0.05);
+      padding: 2.5rem;
+      border-radius: 15px;
+      border: 1px solid rgba(0, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
+    }
+
+    .lead-text {
+      font-size: 1.25rem;
+      color: #e7e7e7;
+      line-height: 1.6;
+      margin-bottom: 1.5rem;
+      text-align: center;
+    }
+
+    .about-text {
+      font-size: 1.1rem;
+      color: #f2f2f5;
+      line-height: 1.8;
+      margin-bottom: 1.5rem;
+      max-width: 800px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .competency-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1.5rem;
+      margin: 2rem 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .competency-list li {
+      color: #aea8a8;
+      padding: 1rem;
+      border-radius: 8px;
+      font-weight: 500;
+      position: relative;
+      padding-left: 2rem;
+      transition: all 0.2s ease;
+      background: rgba(0, 255, 255, 0.05);
+      border: 1px solid rgba(0, 255, 255, 0.1);
+    }
+
+    .competency-list li:hover {
+      color: white;
+      transform: translateY(-5px);
+      box-shadow: 0 0 30px rgba(0, 255, 255, 0.1);
+    }
+
+    .competency-list li::before {
+      content: "▹";
       position: absolute;
-      width: 100%;
-      height: 100%;
-      border-radius: 50%;
-      pointer-events: none;
+      left: 1rem;
+      color: #0ff;
+    }
+
+    /* Skills & Projects Grid */
+    .skills-grid,
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      padding: 2rem 0;
+    }
+
+    .skill-card,
+    .project-card {
+      background: linear-gradient(145deg, rgba(0, 255, 255, 0.05), rgba(255, 255, 255, 0.02));
+      backdrop-filter: blur(10px);
+      border-radius: 15px;
+      padding: 2rem;
+      border: 1px solid rgba(0, 255, 255, 0.1);
+      position: relative;
+      overflow: hidden;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .skill-card::before,
+    .project-card::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: conic-gradient(transparent 135deg, rgb(5, 45, 45) 180deg, transparent 225deg);
+      animation: borderSpin 7s linear infinite;
       z-index: -1;
     }
 
-    .top-ball::before {
-      top: 82%;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 190px;
-      height: 60px;
-      background: radial-gradient(ellipse at top, rgba(254, 252, 252, 0.845), transparent 80%);
-      filter: blur(10px);
-    }
-
-    .bottom-ball::before {
-      bottom: 82%;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 190px;
-      height: 60px;
-      background: radial-gradient(ellipse at bottom, rgba(254, 252, 252, 0.845), transparent 80%);
-      filter: blur(10px);
-    }
-
-    .top-ball {
-      top: -250px;
-      animation: moveTop 1s ease-in forwards, scaleUp 2s ease-in-out 1s forwards;
-    }
-
-    .bottom-ball {
-      bottom: -250px;
-      animation: moveBottom 1s ease-in forwards, scaleUp 2s ease-in-out 1s forwards;
-    }
-
-    @keyframes moveTop {
-      to {
-        top: calc(50% - 280px);
+    @keyframes borderSpin {
+      100% {
+        transform: rotate(360deg);
       }
     }
 
-    @keyframes moveBottom {
-      to {
-        bottom: calc(50% - 280px);
-      }
+    .skill-card:hover,
+    .project-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 30px rgba(0, 255, 255, 0.1);
     }
 
-    @keyframes scaleUp {
-      to {
-        transform: translateX(-50%) scale(1.5);
-      }
+    .skill-card h3,
+    .project-card h3 {
+      font-family: 'Audiowide', cursive;
+      text-shadow: 0 0 20px rgba(0, 255, 255, 0.5);
+      margin-bottom: 1rem;
+      font-size: 1.5rem;
     }
 
-    /* Glass Landing Page Overlay */
-    .landing {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      background: rgba(255, 255, 255, 0.05);
-      border: 1px solid rgba(255, 255, 255, 0.2);
-      border-radius: 20px;
-      backdrop-filter: blur(20px);
-      padding: 40px 60px;
-      max-width: 700px;
-      width: 90%;
-      text-align: center;
-      z-index: 10;
-    }
-
-    .landing h1 {
-      font-family: 'Orbitron', sans-serif;
-      font-size: 3rem;
-      margin-bottom: 20px;
-      color: cyan;
-    }
-
-    .landing p {
+    .skill-card p,
+    .project-card p {
+      color: rgba(255, 255, 255, 0.9);
+      line-height: 1.6;
       font-size: 1.1rem;
-      color: #eee;
-      margin-bottom: 20px;
+      margin-bottom: 1rem;
     }
 
-    .ideas {
-      text-align: left;
-      margin-top: 30px;
+    /* Tech Tags */
+    .tech-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-top: 1rem;
     }
 
-    .ideas h3 {
+    .tag {
+      background: rgba(0, 255, 255, 0.15);
+      padding: 0.4rem 1rem;
+      border-radius: 20px;
+      font-size: 0.9rem;
       color: #0ff;
-      margin-bottom: 10px;
+      border: 1px solid rgba(0, 255, 255, 0.3);
     }
 
-    .ideas ul {
-      padding-left: 20px;
+    /* Project Cards */
+    .project-card {
+      min-height: 250px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
     }
 
-    .ideas li {
-      margin-bottom: 6px;
-      font-size: 0.95rem;
-      color: #ccc;
+    .project-links {
+      margin-top: 1.5rem;
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .project-link {
+      display: inline-flex;
+      align-items: center;
+      padding: 0.6rem 1.5rem;
+      background: rgba(0, 255, 255, 0.1);
+      border-radius: 5px;
+      color: #0ff;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      font-weight: 500;
+    }
+
+    .project-link:hover {
+      background: #0ff;
+      color: #000;
+      box-shadow: 0 0 15px rgba(0, 255, 255, 0.5);
+    }
+
+    /* Contact Form */
+    .contact-form {
+      max-width: 600px;
+      margin: 0 auto;
+      padding: 2rem;
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 15px;
+      border: 1px solid rgba(0, 255, 255, 0.1);
+    }
+
+    input,
+    textarea {
+      width: 100%;
+      padding: 12px;
+      margin: 10px 0;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(0, 255, 255, 0.2);
+      color: #fff;
+      font-size: 1rem;
+      border-radius: 8px;
+      transition: all 0.3s ease;
+    }
+
+    input:focus,
+    textarea:focus {
+      outline: 2px solid #0ff;
+      box-shadow: 0 0 15px rgba(0, 255, 255, 0.2);
+    }
+
+    button {
+      background: #0ff;
+      color: #000;
+      padding: 12px 30px;
+      border: none;
+      cursor: pointer;
+      font-weight: bold;
+      border-radius: 8px;
+      transition: 0.3s;
+      margin-top: 1rem;
+      width: 100%;
+      font-family: 'Audiowide', cursive;
+    }
+
+    button:hover {
+      box-shadow: 0 0 20px rgba(0, 255, 255, 0.5);
+      transform: translateY(-2px);
+    }
+
+    @media (max-width: 768px) {
+      .hero h1 {
+        font-size: 2.5rem;
+      }
+
+      nav a {
+        margin: 0 10px;
+        font-size: 1rem;
+      }
+
+      .thread {
+        width: 2px;
+      }
+
+      section {
+        padding: 60px 0;
+      }
+
+      .section-title {
+        font-size: 2rem;
+      }
+
+      .about-text {
+        font-size: 1rem;
+      }
+
+      .competency-list {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* Existing styles remain unchanged */
+
+    /* Add these media queries at the end of existing styles */
+
+    @media (max-width: 1024px) {
+      .hero h1 {
+        font-size: 3.5rem;
+      }
+
+      .skills-grid,
+      .projects-grid {
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      }
+    }
+
+    @media (max-width: 768px) {
+      .container {
+        padding: 80px 15px 30px;
+      }
+
+      .hero h1 {
+        font-size: 2.5rem;
+        margin-bottom: 15px;
+      }
+
+      .hero p {
+        font-size: 1.2rem;
+      }
+
+      nav {
+        padding: 10px 0;
+      }
+
+      nav a {
+        margin: 0 10px;
+        font-size: 0.9rem;
+      }
+
+      .section-title {
+        font-size: 2rem;
+      }
+
+      .about-details {
+        padding: 1.5rem;
+      }
+
+      .competency-list li {
+        padding: 0.8rem 1rem 0.8rem 1.5rem;
+      }
+
+      .project-card,
+      .skill-card {
+        padding: 1.5rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .thread {
+        width: 2px;
+        left: 10px;
+        right: 10px;
+      }
+
+      .hero h1 {
+        font-size: 2rem;
+        line-height: 1.2;
+      }
+
+      .hero p {
+        font-size: 1rem;
+      }
+
+      nav {
+        padding: 8px 0;
+      }
+
+      nav a {
+        margin: 0 8px;
+        font-size: 0.8rem;
+      }
+
+      .section-title {
+        font-size: 1.75rem;
+      }
+
+      .section-container {
+        padding: 2rem 1rem;
+      }
+
+      .lead-text {
+        font-size: 1.1rem;
+      }
+
+      .about-text {
+        font-size: 1rem;
+      }
+
+      .skills-grid,
+      .projects-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .contact-form {
+        padding: 1rem;
+      }
+
+      input,
+      textarea {
+        padding: 10px;
+        font-size: 0.9rem;
+      }
+
+      button {
+        padding: 10px 20px;
+        font-size: 0.9rem;
+      }
+
+      .project-links {
+        flex-direction: column;
+        gap: 0.5rem;
+      }
+
+      .project-link {
+        width: 100%;
+        justify-content: center;
+      }
+
+      .tech-tags {
+        justify-content: center;
+      }
+
+      .tag {
+        font-size: 0.8rem;
+        padding: 0.3rem 0.8rem;
+      }
+    }
+
+    @media (max-width: 360px) {
+      .hero h1 {
+        font-size: 1.75rem;
+      }
+
+      nav a {
+        margin: 0 5px;
+        font-size: 0.7rem;
+      }
+
+      .section-title {
+        font-size: 1.5rem;
+      }
+
+      .competency-list li {
+        font-size: 0.9rem;
+      }
     }
   </style>
 </head>
 
 <body>
-  <div class="container">
-    <div class="ball top-ball"></div>
-    <div class="ball bottom-ball"></div>
+  <div class="thread left-thread">
+    <div class="glow"></div>
+  </div>
+  <div class="thread right-thread">
+    <div class="glow"></div>
   </div>
 
-  <div class="landing">
-    <h1>@MenoCoder</h1>
-    <p>I create mind-blowing front-end animations and effects using pure HTML, CSS, and JavaScript.
-      My goal is to make coding visually exciting and educational for everyone.</p>
+  <nav>
+    <div>
 
-    <div class="ideas">
-      <h3>🚀 Project Ideas:</h3>
-      <ul>
-        <li>3D Text Carousel with Lighting</li>
-        <li>Scroll-triggered Cinematic Animation</li>
-        <li>CSS-only Liquid Button</li>
-        <li>Interactive Typing Game</li>
-        <li>Custom Cursors with Trails</li>
-        <li>Animated Galaxy Background</li>
-      </ul>
+      <h1>MQ</h1>
     </div>
+    <div>
+
+      <a href="#home">Home</a>
+      <a href="#about">About</a>
+      <a href="#skills">Skills</a>
+      <a href="#projects">Projects</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </nav>
+
+  <div class="container">
+    <section id="home" class="hero animate__animated animate__slideInUp">
+
+      <h1>Hello, I'm <br>Manahil Qamar</h1>
+      <p>Where design meets logic, and pixels meet perfection. <br> Frontend Developer | Tech Enthusiast</p>
+    </section>
+
+    <section id="about" class="section-container">
+      <div class="about-content">
+        <h2 class="section-title">About Me</h2>
+        <div class="about-details">
+          <p class="lead-text">Frontend Developer passionate about creating immersive web experiences, currently
+            expanding into full-stack development.</p>
+
+          <p class="about-text">I'm Manahil Qamar, a frontend specialist with expertise in crafting responsive,
+            user-friendly interfaces. Currently enhancing my skills in backend development through Node.js and MongoDB
+            to build complete web solutions.</p>
+
+          <p class="about-text">My current focus includes:</p>
+          <ul class="competency-list">
+            <li>Advanced JavaScript concepts</li>
+            <li>Node.js backend development</li>
+            <li>Database design with MongoDB</li>
+            <li>REST API implementation</li>
+            <li>Performance optimization</li>
+            <li>Modern development workflows</li>
+          </ul>
+
+          <p class="about-text">When not coding, I enjoy contributing to open-source projects and documenting my
+            learning journey through technical blogging.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="skills">
+      <h2 class="section-title">Technical Skills</h2>
+      <div class="skills-grid">
+        <div class="skill-card">
+          <h3>Core Technologies</h3>
+          <p>Frontend development fundamentals</p>
+          <div class="tech-tags">
+            <span class="tag">HTML5</span>
+            <span class="tag">CSS3</span>
+            <span class="tag">JavaScript</span>
+            <span class="tag">React</span>
+            <span class="tag">Redux</span>
+          </div>
+        </div>
+        <div class="skill-card">
+          <h3>Currently Learning</h3>
+          <p>Backend development stack</p>
+          <div class="tech-tags">
+            <span class="tag">Node.js</span>
+            <span class="tag">Express</span>
+            <span class="tag">MongoDB</span>
+            <span class="tag">REST API</span>
+            <span class="tag">JWT</span>
+          </div>
+        </div>
+        <div class="skill-card">
+          <h3>Dev Tools</h3>
+          <p>Development workflow essentials</p>
+          <div class="tech-tags">
+            <span class="tag">Git</span>
+            <span class="tag">VS Code</span>
+            <span class="tag">Webpack</span>
+            <span class="tag">Postman</span>
+            <span class="tag">Figma</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="projects">
+      <h2 class="section-title">Featured Projects</h2>
+      <div class="projects-grid">
+        <div class="project-card">
+          <div>
+            <h3>E-commerce Learning Platform</h3>
+            <p>Full-stack application developed during Node.js learning journey, featuring product management and user
+              authentication.</p>
+            <div class="tech-tags">
+              <span class="tag">React</span>
+              <span class="tag">Node.js</span>
+              <span class="tag">MongoDB</span>
+              <span class="tag">Express</span>
+            </div>
+          </div>
+          <div class="project-links">
+            <a href="#" class="project-link">Live Demo</a>
+            <a href="#" class="project-link">Code</a>
+          </div>
+        </div>
+        <div class="project-card">
+          <div>
+            <h3>Learning Progress Tracker</h3>
+            <p>Interactive dashboard to track coding skill development with data visualization features.</p>
+            <div class="tech-tags">
+              <span class="tag">React</span>
+              <span class="tag">Chart.js</span>
+              <span class="tag">Firebase</span>
+              <span class="tag">SCSS</span>
+            </div>
+          </div>
+          <div class="project-links">
+            <a href="#" class="project-link">Demo</a>
+            <a href="#" class="project-link">Case Study</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact">
+      <h2 class="section-title">Get in Touch</h2>
+      <form class="contact-form">
+        <input type="text" placeholder="Name" required>
+        <input type="email" placeholder="Email" required>
+        <textarea rows="5" placeholder="Your message..." required></textarea>
+        <button type="submit">Send Message</button>
+      </form>
+    </section>
   </div>
+
+  <script>
+    const threads = document.querySelectorAll('.thread');
+    const glows = document.querySelectorAll('.glow');
+    let scrollTimeout;
+    let lastScrollTop = 0;
+    let currentHeight = 50;
+    const speedFactor = 0.162;
+
+    function updateThreadHeight() {
+      const scrollTop = window.scrollY;
+      const scrollDelta = scrollTop - lastScrollTop;
+      currentHeight += scrollDelta * speedFactor;
+      currentHeight = Math.max(12, currentHeight);
+      threads.forEach(thread => thread.style.height = `${currentHeight}px`);
+      glows.forEach(glow => glow.classList.add('animate'));
+      clearTimeout(scrollTimeout);
+      scrollTimeout = setTimeout(() => glows.forEach(glow => glow.classList.remove('animate')), 200);
+      lastScrollTop = scrollTop;
+    }
+
+    window.addEventListener('scroll', updateThreadHeight);
+    window.addEventListener('load', updateThreadHeight);
+
+    // Smooth scrolling
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        document.querySelector(this.getAttribute('href')).scrollIntoView({
+          behavior: 'smooth'
+        });
+      });
+    })
+  </script>
 </body>
 
 </html>

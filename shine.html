@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Shiny Text Component</title>
+  <style>
+    .shiny-text {
+      color: rgba(181, 181, 181, 0.64);
+      display: inline-block;
+      background-image: linear-gradient(120deg,
+          rgba(255, 255, 255, 0) 40%,
+          rgba(255, 255, 255, 0.8) 50%,
+          rgba(255, 255, 255, 0) 60%);
+      background-size: 200% 100%;
+      -webkit-background-clip: text;
+      background-clip: text;
+      font-family: Arial, sans-serif;
+      font-size: 2rem;
+    }
+
+    .animate-shine {
+      animation: shine 5s linear infinite;
+    }
+
+    @keyframes shine {
+      0% {
+        background-position: 100% center;
+      }
+
+      100% {
+        background-position: -100% center;
+      }
+    }
+
+    /* Demo styles */
+    body {
+      background: #1a1a1a;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 2rem;
+      padding: 2rem;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="demo-container"></div>
+  <div id="demo-container-2"></div>
+  <div id="demo-container-3"></div>
+
+  <script>
+    function createShinyText(config) {
+      const element = document.createElement('div');
+      const {
+        text = '',
+        disabled = false,
+        speed = 5,
+        className = ''
+      } = config;
+
+      // Base classes
+      element.className = `shiny-text ${className}`;
+
+      // Add animation class if not disabled
+      if (!disabled) {
+        element.classList.add('animate-shine');
+      }
+
+      // Set text content
+      element.textContent = text;
+
+      // Apply animation speed
+      if (!disabled) {
+        element.style.animationDuration = `${speed * 1.5}s`;
+      }
+
+      return element;
+    }
+
+    // Demo usage
+    const demoContainer = document.getElementById('demo-container');
+    const demoContainer2 = document.getElementById('demo-container-2');
+    const demoContainer3 = document.getElementById('demo-container-3');
+
+    // Example 1: Default settings
+    const shinyText1 = createShinyText({
+      text: 'Hello, Shiny World!'
+    });
+    demoContainer.appendChild(shinyText1);
+
+    // Example 2: Custom speed and class
+    const shinyText2 = createShinyText({
+      text: 'Custom Speed Example',
+      speed: 3,
+      className: 'large-text'
+    });
+    demoContainer2.appendChild(shinyText2);
+
+    // Example 3: Disabled animation
+    const shinyText3 = createShinyText({
+      text: 'Disabled Animation',
+      disabled: true
+    });
+    demoContainer3.appendChild(shinyText3);
+  </script>
+</body>
+
+</html>

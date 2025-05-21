@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Glowing Balls Landing Page</title>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600&family=Poppins:wght@300;500;700&display=swap"
+    rel="stylesheet">
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background: radial-gradient(ellipse at center, #000 0%, #000 100%);
+      font-family: 'Poppins', sans-serif;
+      color: white;
+      overflow-x: hidden;
+    }
+
+    .AboutContainer {
+      position: relative;
+      width: 100%;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    .ball {
+      width: 220px;
+      height: 220px;
+      background: radial-gradient(circle, rgb(1, 67, 72) 0%, rgba(0, 255, 255) 100%);
+      border-radius: 50%;
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%) scale(1);
+      box-shadow: 0 0 40px cyan;
+    }
+
+    .top-ball {
+      top: -250px;
+      animation: moveTop 1s ease-in forwards, scaleUp 2s ease-in-out 1s forwards;
+    }
+
+    .bottom-ball {
+      bottom: -250px;
+      animation: moveBottom 1s ease-in forwards, scaleUp 2s ease-in-out 1s forwards;
+    }
+
+    .ball::before {
+      content: "";
+      position: absolute;
+      width: 190px;
+      height: 60px;
+      border-radius: 50%;
+      filter: blur(10px);
+      pointer-events: none;
+    }
+
+    .top-ball::before {
+      top: 82%;
+      left: 50%;
+      transform: translateX(-50%);
+      background: radial-gradient(ellipse at top, rgba(254, 252, 252, 0.8), transparent 80%);
+    }
+
+    .bottom-ball::before {
+      bottom: 82%;
+      left: 50%;
+      transform: translateX(-50%);
+      background: radial-gradient(ellipse at bottom, rgba(254, 252, 252, 0.8), transparent 80%);
+    }
+
+    @keyframes moveTop {
+      to {
+        top: calc(50% - 320px);
+      }
+    }
+
+    @keyframes moveBottom {
+      to {
+        bottom: calc(50% - 320px);
+      }
+    }
+
+    @keyframes scaleUp {
+      to {
+        transform: translateX(-50%) scale(1.5);
+      }
+    }
+
+    .landingPage {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 20px;
+      backdrop-filter: blur(20px);
+      padding: 40px 60px;
+      max-width: 700px;
+      width: 90%;
+      text-align: center;
+      z-index: 10;
+      animation: fadeIn 1s ease-in-out 2s both;
+    }
+
+    @keyframes fadeIn {
+      0% {
+        opacity: 0;
+        transform: translate(-50%, -20%);
+      }
+
+      100% {
+        opacity: 1;
+        transform: translate(-50%, -50%);
+      }
+    }
+
+    .landingPage h1 {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 3rem;
+      margin-bottom: 20px;
+      color: cyan;
+    }
+
+    .landingPage p {
+      font-size: 1.1rem;
+      color: #eee;
+      margin-bottom: 20px;
+    }
+
+    .ideas {
+      text-align: left;
+      margin-top: 30px;
+    }
+
+    .ideas h3 {
+      color: #0ff;
+      margin-bottom: 10px;
+    }
+
+    .ideas ul {
+      padding-left: 20px;
+    }
+
+    .ideas li {
+      margin-bottom: 6px;
+      font-size: 0.95rem;
+      color: #ccc;
+    }
+
+    .aboutSection {
+      width: 90%;
+      max-width: 800px;
+      margin: 100vh auto 0px auto;
+      padding: 40px;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      border-radius: 20px;
+      backdrop-filter: blur(10px);
+      color: white;
+      text-align: center;
+      animation: fadeIn 1s ease-in-out 3s both;
+      position: relative;
+      left: 24rem;
+    }
+
+    .aboutSection h2 {
+      font-size: 2.5rem;
+      color: cyan;
+      margin-bottom: 20px;
+      font-family: 'Orbitron', sans-serif;
+    }
+
+    .aboutSection p {
+      font-size: 1.05rem;
+      line-height: 1.6;
+      color: #ddd;
+      margin-bottom: 15px;
+    }
+
+    /* About section background balls */
+    .aboutBalls {
+      position: relative;
+      width: 100%;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    .top-about-ball,
+    .bottom-about-ball {
+      opacity: 0;
+      transform: translateX(-50%) scale(1);
+      position: absolute;
+      left: 50%;
+      width: 220px;
+      height: 220px;
+      background: radial-gradient(circle, rgb(1, 67, 72) 0%, rgba(0, 255, 255) 100%);
+      border-radius: 50%;
+      box-shadow: 0 0 40px cyan;
+    }
+
+    .top-about-ball::before,
+    .bottom-about-ball::before {
+      content: "";
+      position: absolute;
+      width: 190px;
+      height: 60px;
+      border-radius: 50%;
+      filter: blur(10px);
+      pointer-events: none;
+    }
+
+    .top-about-ball::before {
+      top: 82%;
+      left: 50%;
+      transform: translateX(-50%);
+      background: radial-gradient(ellipse at top, rgba(254, 252, 252, 0.8), transparent 80%);
+    }
+
+    .bottom-about-ball::before {
+      bottom: 82%;
+      left: 50%;
+      transform: translateX(-50%);
+      background: radial-gradient(ellipse at bottom, rgba(254, 252, 252, 0.8), transparent 80%);
+    }
+
+    .aboutBalls.animate .top-about-ball {
+      top: -250px;
+      animation: moveTop 1s ease-in forwards, scaleUp 2s ease-in-out 1s forwards;
+      opacity: 1;
+    }
+
+    .aboutBalls.animate .bottom-about-ball {
+      bottom: -250px;
+      animation: moveBottom 1s ease-in forwards, scaleUp 2s ease-in-out 1s forwards;
+      opacity: 1;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Glowing Balls Background -->
+  <div class="AboutContainer">
+    <div class="ball top-ball"></div>
+    <div class="ball bottom-ball"></div>
+  </div>
+
+  <!-- Main Landing Glass Content -->
+  <div class="landingPage">
+    <h1>@MenoCoder</h1>
+    <p>I create mind-blowing front-end animations and effects using pure HTML, CSS, and JavaScript.
+      My goal is to make coding visually exciting and educational for everyone.</p>
+
+    <div class="ideas">
+      <h3>🚀 Project Ideas:</h3>
+      <ul>
+        <li>3D Text Carousel with Lighting</li>
+        <li>Scroll-triggered Cinematic Animation</li>
+        <li>CSS-only Liquid Button</li>
+        <li>Interactive Typing Game</li>
+        <li>Custom Cursors with Trails</li>
+        <li>Animated Galaxy Background</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- About Section Background Balls -->
+  <div class="aboutBalls">
+    <div class="top-about-ball"></div>
+    <div class="bottom-about-ball"></div>
+  </div>
+
+  <!-- About Section -->
+  <div class="aboutSection">
+    <h2>About Me</h2>
+    <p>
+      I'm a passionate front-end developer focused on pushing the boundaries of what's possible with HTML, CSS, and
+      JavaScript.
+      From 3D effects to interactive user experiences, I love turning creative ideas into reality through code.
+    </p>
+    <p>
+      I also create educational content to help others learn modern web design techniques, animations, and UI/UX effects
+      that stand out.
+    </p>
+  </div>
+
+  <!-- Scroll-Trigger Script -->
+  <script>
+    const aboutSection = document.querySelector('.aboutSection');
+    const aboutBalls = document.querySelector('.aboutBalls');
+
+    window.addEventListener('scroll', () => {
+      const rect = aboutSection.getBoundingClientRect();
+      const windowHeight = window.innerHeight;
+
+      if (rect.top < windowHeight - 100) {
+        aboutBalls.classList.add('animate');
+      }
+    });
+  </script>
+
+</body>
+
+</html>
