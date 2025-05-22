@@ -134,7 +134,7 @@
     .hero p {
       font-size: 1.5rem;
       color: #273f37;
-      margin-top: 1rem;
+      margin-bottom: 2rem;
     }
 
     h2 {
@@ -280,8 +280,8 @@
 
     .skill-card:hover,
     .project-card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 10px 30px rgba(0, 255, 255, 0.1);
+      transform: translateY(-8px);
+      box-shadow: 0 10px 30px rgba(29, 127, 127, 0.367);
     }
 
     .skill-card h3,
@@ -347,7 +347,7 @@
     .project-link:hover {
       background: #0ff;
       color: #000;
-      box-shadow: 0 0 15px rgba(0, 255, 255, 0.5);
+      box-shadow: 0 0 15px rgba(67, 212, 212, 0.5);
     }
 
     /* Contact Form */
@@ -429,9 +429,6 @@
       }
     }
 
-    /* Existing styles remain unchanged */
-
-    /* Add these media queries at the end of existing styles */
 
     @media (max-width: 1024px) {
       .hero h1 {
@@ -584,6 +581,86 @@
         font-size: 0.9rem;
       }
     }
+
+    /* From Uiverse.io by neerajbaniwal */
+    .btn-shine {
+      position: absolute;
+      top: 20%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      padding: 8px 18px;
+      color: #fff;
+      background: linear-gradient(to right, #49c1c7 0, #fff 10%, #4a5e63 20%);
+      background-position: 0;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: shine 3s infinite linear;
+      animation-fill-mode: forwards;
+      -webkit-text-size-adjust: none;
+      font-weight: 600;
+      font-size: 16px;
+      text-decoration: none;
+      white-space: nowrap;
+      font-family: "Poppins", sans-serif;
+      border: 2px solid rgb(83, 83, 82);
+      border-radius: 25px;
+    }
+
+    @-moz-keyframes shine {
+      0% {
+        background-position: 0;
+      }
+
+      60% {
+        background-position: 180px;
+      }
+
+      100% {
+        background-position: 180px;
+      }
+    }
+
+    @-webkit-keyframes shine {
+      0% {
+        background-position: 0;
+      }
+
+      60% {
+        background-position: 180px;
+      }
+
+      100% {
+        background-position: 180px;
+      }
+    }
+
+    @-o-keyframes shine {
+      0% {
+        background-position: 0;
+      }
+
+      60% {
+        background-position: 180px;
+      }
+
+      100% {
+        background-position: 180px;
+      }
+    }
+
+    @keyframes shine {
+      0% {
+        background-position: 0;
+      }
+
+      60% {
+        background-position: 180px;
+      }
+
+      100% {
+        background-position: 180px;
+      }
+    }
   </style>
 </head>
 
@@ -610,7 +687,9 @@
     </div>
   </nav>
 
+  <a href="#" class="btn-shine">software enginer</a>
   <div class="container">
+
     <section id="home" class="hero animate__animated animate__slideInUp">
 
       <h1>Hello, I'm <br>Manahil Qamar</h1>
