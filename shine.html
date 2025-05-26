@@ -2,111 +2,122 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Shiny Text Component</title>
+  <meta charset="UTF-8" />
+  <title>Simplified Shooting Star</title>
   <style>
-    .shiny-text {
-      color: rgba(181, 181, 181, 0.64);
-      display: inline-block;
-      background-image: linear-gradient(120deg,
-          rgba(255, 255, 255, 0) 40%,
-          rgba(255, 255, 255, 0.8) 50%,
-          rgba(255, 255, 255, 0) 60%);
-      background-size: 200% 100%;
-      -webkit-background-clip: text;
-      background-clip: text;
-      font-family: Arial, sans-serif;
-      font-size: 2rem;
-    }
-
-    .animate-shine {
-      animation: shine 5s linear infinite;
-    }
-
-    @keyframes shine {
-      0% {
-        background-position: 100% center;
-      }
-
-      100% {
-        background-position: -100% center;
-      }
-    }
-
-    /* Demo styles */
     body {
-      background: #1a1a1a;
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      gap: 2rem;
-      padding: 2rem;
+      margin: 0;
+      background: #0d0d0d;
+      overflow: hidden;
+    }
+
+    canvas {
+      display: block;
     }
   </style>
 </head>
 
 <body>
-  <div id="demo-container"></div>
-  <div id="demo-container-2"></div>
-  <div id="demo-container-3"></div>
-
+  <canvas id="canvas"></canvas>
   <script>
-    function createShinyText(config) {
-      const element = document.createElement('div');
-      const {
-        text = '',
-        disabled = false,
-        speed = 5,
-        className = ''
-      } = config;
+    const canvas = document.getElementById('canvas');
+    const ctx = canvas.getContext('2d');
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
 
-      // Base classes
-      element.className = `shiny-text ${className}`;
+    // Particles
+    const particles = Array.from({ length: 80 }, () => ({
+      x: Math.random() * canvas.width,
+      y: Math.random() * canvas.height,
+      r: Math.random() * 1.5 + 1,
+      vx: (Math.random() - 0.5) * 0.5,
+      vy: (Math.random() - 0.5) * 0.5
+    }));
 
-      // Add animation class if not disabled
-      if (!disabled) {
-        element.classList.add('animate-shine');
-      }
-
-      // Set text content
-      element.textContent = text;
-
-      // Apply animation speed
-      if (!disabled) {
-        element.style.animationDuration = `${speed * 1.5}s`;
-      }
-
-      return element;
+    // Shooting Star
+    let star = null;
+    function spawnStar() {
+      star = {
+        x: Math.random() < 0.5 ? -100 : canvas.width + 100,
+        y: Math.random() * canvas.height * 0.8,
+        vx: Math.random() < 0.5 ? 4 : -4,
+        trail: [],
+        life: 0,
+        max: 90
+      };
     }
 
-    // Demo usage
-    const demoContainer = document.getElementById('demo-container');
-    const demoContainer2 = document.getElementById('demo-container-2');
-    const demoContainer3 = document.getElementById('demo-container-3');
+    function drawStar(s) {
+      s.trail.push({ x: s.x, y: s.y });
+      if (s.trail.length > 10) s.trail.shift();
 
-    // Example 1: Default settings
-    const shinyText1 = createShinyText({
-      text: 'Hello, Shiny World!'
-    });
-    demoContainer.appendChild(shinyText1);
+      const fade = s.life < 15 ? s.life / 15 :
+        s.life > s.max - 15 ? (s.max - s.life) / 15 : 1;
 
-    // Example 2: Custom speed and class
-    const shinyText2 = createShinyText({
-      text: 'Custom Speed Example',
-      speed: 3,
-      className: 'large-text'
-    });
-    demoContainer2.appendChild(shinyText2);
+      for (let i = 0; i < s.trail.length - 1; i++) {
+        const p1 = s.trail[i], p2 = s.trail[i + 1];
+        ctx.beginPath();
+        ctx.moveTo(p1.x, p1.y);
+        ctx.lineTo(p2.x, p2.y);
+        ctx.strokeStyle = `rgba(0,255,204,${fade * (i / s.trail.length)})`;
+        ctx.lineWidth = 1.2;
+        ctx.shadowColor = `rgba(0,255,204,${fade})`;
+        ctx.shadowBlur = 3;
+        ctx.stroke();
+      }
 
-    // Example 3: Disabled animation
-    const shinyText3 = createShinyText({
-      text: 'Disabled Animation',
-      disabled: true
+      const glow = ctx.createRadialGradient(s.x, s.y, 0, s.x, s.y, 20);
+      glow.addColorStop(0, `rgba(0,255,204,${0.2 * fade})`);
+      glow.addColorStop(1, `rgba(0,255,204,0)`);
+      ctx.fillStyle = glow;
+      ctx.beginPath();
+      ctx.arc(s.x, s.y, 20, 0, Math.PI * 2);
+      ctx.fill();
+
+      ctx.beginPath();
+      ctx.arc(s.x, s.y, 2, 0, Math.PI * 2);
+      ctx.fillStyle = `rgba(0,255,204,${0.9 * fade})`;
+      ctx.fill();
+    }
+
+    function animate() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+      // Draw background particles
+      particles.forEach(p => {
+        p.x += p.vx;
+        p.y += p.vy;
+        if (p.x < 0 || p.x > canvas.width) p.vx *= -1;
+        if (p.y < 0 || p.y > canvas.height) p.vy *= -1;
+
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+        ctx.fillStyle = 'rgba(0,255,204,0.4)';
+        ctx.fill();
+      });
+
+      // Draw and update shooting star
+      if (star) {
+        star.x += star.vx;
+        star.life++;
+        drawStar(star);
+        if (star.life > star.max) {
+          star = null;
+          setTimeout(spawnStar, 3000 + Math.random() * 2000);
+        }
+      }
+
+      requestAnimationFrame(animate);
+    }
+
+    // Start
+    setTimeout(spawnStar, 2000);
+    animate();
+
+    window.addEventListener('resize', () => {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
     });
-    demoContainer3.appendChild(shinyText3);
   </script>
 </body>
 

@@ -22,6 +22,7 @@
       background: #000;
       color: #fff;
       line-height: 1.6;
+
     }
 
     /* Glowing Threads */
@@ -29,10 +30,11 @@
       position: fixed;
       width: 4px;
       overflow: hidden;
-      background: #0ff;
+      background: #b2ecf8fc;
       z-index: 999;
       transition: height 0.4s ease-out;
-      box-shadow: 0 0 25px rgba(0, 255, 255, 0.5);
+      text-shadow: 0 0 20px rgba(0, 255, 255, 0.5);
+      border-radius: 52px;
       filter: brightness(1.5) drop-shadow(0 0 10px cyan);
     }
 
@@ -81,7 +83,7 @@
       top: 0;
       left: 0;
       width: 100%;
-      background: rgba(0, 0, 0, 0.9);
+      background: transparent;
       padding: 15px 20px;
       display: flex;
       justify-content: space-between;
@@ -116,12 +118,23 @@
     }
 
     .hero {
+      position: relative;
       text-align: center;
       font-family: "Audiowide", cursive;
       min-height: 100vh;
       display: flex;
       flex-direction: column;
       justify-content: center;
+      z-index: 1;
+    }
+
+    canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: -1;
+      opacity: 0.4;
+      pointer-events: none;
     }
 
     .hero h1 {
@@ -757,6 +770,9 @@
 </head>
 
 <body>
+  <canvas id="canvas"></canvas>
+
+
   <div class="thread left-thread">
     <div class="glow"></div>
   </div>
@@ -779,7 +795,9 @@
     </div>
   </nav>
 
-  <a href="#" class="btn-shine">software enginer</a>
+  <a href="#" class="btn-shine">
+    Available for work
+  </a>
   <div class="container">
 
     <section id="home" class="hero animate__animated animate__slideInUp">
@@ -923,7 +941,7 @@
     const glows = document.querySelectorAll('.glow');
     let scrollTimeout;
     let lastScrollTop = 0;
-    let currentHeight = 50;
+    let currentHeight = 0;
     const speedFactor = 0.162;
 
     function updateThreadHeight() {
@@ -950,6 +968,131 @@
         });
       });
     })
+
+
+    const canvas = document.getElementById('canvas');
+    const ctx = canvas.getContext('2d');
+
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+
+    // Particle background
+    const particles = [];
+    const particleCount = window.innerWidth < 768 ? 50 : 100;
+
+    for (let i = 0; i < particleCount; i++) {
+      particles.push({
+        x: Math.random() * canvas.width,
+        y: Math.random() * canvas.height,
+        radius: Math.random() * 1.5 + 1,
+        vx: (Math.random() - 0.5) * 0.5,
+        vy: (Math.random() - 0.5) * 0.5
+      });
+    }
+
+    // Star setup
+    let star = null;
+
+    function spawnStar() {
+      const goingRight = Math.random() < 0.5;
+      const fromCenter = Math.random() < 0.5;
+      const y = Math.random() * canvas.height * 0.7 + canvas.height * 0.15;
+
+      star = {
+        x: fromCenter ? canvas.width / 2 : (goingRight ? -100 : canvas.width + 100),
+        y: y,
+        vx: goingRight ? 4 : -4,
+        radius: 2 + Math.random() * 2,
+        life: 0,
+        maxLife: 90, // 60 = 1 sec @ 60fps, now 1.5s
+        goingRight,
+        trail: [],
+      };
+    }
+
+    // Draw star with glow and trail
+    function drawStar(star) {
+      // Add current position to trail
+      star.trail.push({ x: star.x, y: star.y });
+      if (star.trail.length > 15) star.trail.shift(); // keep trail short
+
+      // Fade in and out alpha
+      let alpha = 1;
+      if (star.life < 15) alpha = star.life / 15; // fade in
+      else if (star.life > star.maxLife - 15) alpha = (star.maxLife - star.life) / 15; // fade out
+
+      // Draw trail
+      for (let i = 0; i < star.trail.length - 1; i++) {
+        const p1 = star.trail[i];
+        const p2 = star.trail[i + 1];
+        ctx.beginPath();
+        ctx.moveTo(p1.x, p1.y);
+        ctx.lineTo(p2.x, p2.y);
+        ctx.strokeStyle = `rgba(0, 255, 204, ${alpha * (i / star.trail.length)})`;
+        ctx.lineWidth = 1.5;
+        ctx.shadowColor = `rgba(0, 255, 204, ${alpha})`;
+        ctx.shadowBlur = 9;
+        ctx.stroke();
+      }
+
+      // Glow
+      const glow = ctx.createRadialGradient(star.x, star.y, 0, star.x, star.y, 25);
+      glow.addColorStop(0, `rgba(0, 255, 204, ${0.2 * alpha})`);
+      glow.addColorStop(1, `rgba(0, 255, 204, 0)`);
+
+      ctx.fillStyle = glow;
+      ctx.beginPath();
+      ctx.arc(star.x, star.y, 25, 0, Math.PI * 2);
+      ctx.fill();
+
+      // Star core
+      ctx.beginPath();
+      ctx.arc(star.x, star.y, star.radius, 0, Math.PI * 2);
+      ctx.fillStyle = `rgba(0, 255, 204, ${0.9 * alpha})`;
+      ctx.fill();
+    }
+
+    // Main animation
+    function animate() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+      // Background particles
+      particles.forEach(p => {
+        p.x += p.vx;
+        p.y += p.vy;
+
+        if (p.x < 0 || p.x > canvas.width) p.vx *= -1;
+        if (p.y < 0 || p.y > canvas.height) p.vy *= -1;
+
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+        ctx.fillStyle = 'rgba(0, 255, 204, 0.5)';
+        ctx.fill();
+      });
+
+      // Star
+      if (star) {
+        star.x += star.vx;
+        star.life++;
+        drawStar(star);
+
+        if (star.life > star.maxLife) {
+          star = null;
+          setTimeout(spawnStar, 3000 + Math.random() * 2000); // next after 3–5 sec
+        }
+      }
+
+      requestAnimationFrame(animate);
+    }
+
+    // Initial
+    setTimeout(spawnStar, 2000);
+    animate();
+
+    window.addEventListener('resize', () => {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    });
   </script>
 </body>
 
