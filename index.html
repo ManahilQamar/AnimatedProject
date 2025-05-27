@@ -766,6 +766,39 @@
         padding: 0.4rem 0.8rem;
       }
     }
+
+    #bird {
+      position: absolute;
+      width: 50px;
+      transition: all 1s ease;
+      z-index: 10;
+      animation: fly 1s ease-in-out;
+    }
+
+    #bird img {
+      width: 160px;
+    }
+
+    @keyframes fly {
+      0% {
+        left: 80px;
+        transform: translateY(-20px) rotate(-10deg);
+      }
+
+      25% {
+        left: 20px;
+        transform: translateY(-10px) rotate(-5deg);
+      }
+
+      25% {
+        left: 20px;
+        transform: translateY(10px) rotate(10deg);
+      }
+
+      100% {
+        transform: translateY(0) rotate(0);
+      }
+    }
   </style>
 </head>
 
@@ -794,10 +827,11 @@
       <a href="#contact">Contact</a>
     </div>
   </nav>
+  <div id="bird">
+    <img src="butterfly.gif" alt="Butterfly">
+  </div>
+  <a href="#" class="btn-shine" id="shine-btn">Available for work</a>
 
-  <a href="#" class="btn-shine">
-    Available for work
-  </a>
   <div class="container">
 
     <section id="home" class="hero animate__animated animate__slideInUp">
@@ -908,6 +942,7 @@
             <a href="#" class="project-link">Case Study</a>
           </div>
         </div>
+
       </div>
     </section>
 
@@ -928,6 +963,7 @@
           <a href="#" class="social-link">CodePen</a>
           <a href="#" class="social-link">Twitter</a>
         </div>
+
         <div class="footer-info">
           <p class="copyright">&copy; 2024 Manahil Qamar. All rights reserved.</p>
           <a href="#home" class="back-to-top">↑ Back to Orbit</a>
@@ -1092,6 +1128,40 @@
     window.addEventListener('resize', () => {
       canvas.width = window.innerWidth;
       canvas.height = window.innerHeight;
+    });
+
+    const bird = document.getElementById("bird");
+
+    const positions = {
+      "shine-btn": document.getElementById("shine-btn"),
+      "home": document.getElementById("home"),
+      "skills": document.getElementById("skills"),
+      "projects": document.getElementById("projects"),
+      "contact": document.getElementById("contact")
+    };
+
+    const sections = Object.entries(positions);
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const rect = entry.target.getBoundingClientRect();
+          const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+
+          const top = rect.top + scrollTop - 50; // Adjust for butterfly offset
+          const left = rect.left + rect.width / 2 - 25; // Center butterfly
+
+          bird.style.top = `${top}px`;
+          bird.style.left = `${left}px`;
+        }
+      });
+    }, {
+      threshold: 0.6
+    });
+
+    // Observe all sections
+    sections.forEach(([key, el]) => {
+      if (el) observer.observe(el);
     });
   </script>
 </body>
