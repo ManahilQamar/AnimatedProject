@@ -779,23 +779,131 @@
       width: 160px;
     }
 
-    @keyframes fly {
 
 
+    /* Hamburger Menu */
+    .hamburger {
+      display: none;
+      cursor: pointer;
+      background: transparent;
+      border: none;
+      padding: 5px;
+      z-index: 1001;
+    }
 
+    .hamburger-box {
+      width: 30px;
+      height: 24px;
+      display: inline-block;
+      position: relative;
+    }
 
+    .hamburger-inner {
+      width: 100%;
+      height: 2px;
+      background-color: #0ff;
+      position: absolute;
+      left: 19rem;
+      transition: all 0.3s ease;
+      box-shadow: 0 0 5px rgba(0, 255, 255, 0.5);
+    }
 
-      0% {
-        transform: translateY(0) rotate(0);
+    .hamburger-inner::before,
+    .hamburger-inner::after {
+      content: '';
+      width: 100%;
+      height: 2px;
+      background-color: #0ff;
+      position: absolute;
+      left: 0;
+      transition: all 0.3s ease;
+      box-shadow: 0 0 5px rgba(0, 255, 255, 0.5);
+    }
+
+    .hamburger-inner::before {
+      top: -8px;
+    }
+
+    .hamburger-inner::after {
+      bottom: -8px;
+    }
+
+    /* Active state */
+    .hamburger--active .hamburger-inner {
+      background-color: transparent;
+    }
+
+    .hamburger--active .hamburger-inner::before {
+      transform: translateY(8px) rotate(45deg);
+    }
+
+    .hamburger--active .hamburger-inner::after {
+      transform: translateY(-8px) rotate(-45deg);
+    }
+
+    /* Mobile Menu */
+    .nav-links {
+      display: flex;
+      transition: transform 0.3s ease-in-out;
+    }
+
+    .mobile-nav {
+      position: fixed;
+      top: 0;
+      right: -100%;
+      height: 100vh;
+      width: 70%;
+      max-width: 300px;
+      background: rgba(0, 0, 0, 0.95);
+      backdrop-filter: blur(10px);
+      padding: 80px 20px 20px;
+      flex-direction: column;
+      transition: right 0.3s ease-in-out;
+      z-index: 999;
+      border-left: 1px solid rgba(0, 255, 255, 0.1);
+    }
+
+    .mobile-nav.active {
+      right: 0;
+    }
+
+    .mobile-nav a {
+      padding: 15px;
+      margin: 10px 0;
+      border-radius: 5px;
+      background: rgba(0, 255, 255, 0.05);
+    }
+
+    /* Media Queries */
+    @media (max-width: 768px) {
+      .nav-links {
+        display: none;
       }
 
-      10% {
-        transform: translateY(10) rotate(10);
+      .hamburger {
+        display: block;
       }
 
-      20% {
-        transform: translateY(-10) rotate(-10);
+      nav {
+        padding: 15px 20px;
       }
+    }
+
+    /* Add backdrop filter for mobile menu */
+    .menu-backdrop {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.5);
+      backdrop-filter: blur(5px);
+      z-index: 998;
+    }
+
+    .menu-backdrop.active {
+      display: block;
     }
   </style>
 </head>
@@ -816,14 +924,27 @@
 
       <h1>MQ</h1>
     </div>
-    <div>
-
+    <button class="hamburger" aria-label="Menu">
+      <span class="hamburger-box">
+        <span class="hamburger-inner"></span>
+      </span>
+    </button>
+    <div class="nav-links">
       <a href="#home">Home</a>
       <a href="#about">About</a>
       <a href="#skills">Skills</a>
       <a href="#projects">Projects</a>
       <a href="#contact">Contact</a>
     </div>
+    <div class="mobile-nav">
+      <a href="#home">Home</a>
+      <a href="#about">About</a>
+      <a href="#skills">Skills</a>
+      <a href="#projects">Projects</a>
+      <a href="#contact">Contact</a>
+    </div>
+    <div class="menu-backdrop"></div>
+  </nav>
   </nav>
   <div id="bird">
     <img src="butterfly.gif" alt="Butterfly">
@@ -1004,6 +1125,37 @@
     })
 
 
+
+    // Add hamburger menu functionality
+    const hamburger = document.querySelector('.hamburger');
+    const mobileNav = document.querySelector('.mobile-nav');
+    const backdrop = document.querySelector('.menu-backdrop');
+    const navLinks = document.querySelectorAll('.mobile-nav a');
+
+    function toggleMenu() {
+      hamburger.classList.toggle('hamburger--active');
+      mobileNav.classList.toggle('active');
+      backdrop.classList.toggle('active');
+    }
+
+    hamburger.addEventListener('click', toggleMenu);
+    backdrop.addEventListener('click', toggleMenu);
+
+    navLinks.forEach(link => {
+      link.addEventListener('click', () => {
+        if (mobileNav.classList.contains('active')) {
+          toggleMenu();
+        }
+      });
+    });
+
+    // Close menu on scroll
+    window.addEventListener('scroll', () => {
+      if (mobileNav.classList.contains('active')) {
+        toggleMenu();
+      }
+    });
+
     const canvas = document.getElementById('canvas');
     const ctx = canvas.getContext('2d');
 
@@ -1130,37 +1282,55 @@
 
     const bird = document.getElementById("bird");
 
-    // Define bird positions for 5 sections
+    // Waypoints with scroll percentage and target positions
     const positions = [
-      { top: 215, left: 165, rotate: 0 },     // Section 1
-      { top: 120, left: 290, rotate: 0 },      // Section 2
-      { top: 200, left: 665, rotate: 360 },   // Section 3 (rotate)
-      { top: 20, left: 165, rotate: 360 },    // Section 4 (rotate)
-      { top: 135, left: 250, rotate: 0 },     // Section 5
-      { top: 10, left: 65, rotate: 0 }      // Section 5
+      { scroll: 0, top: 240, left: 165, rotate: 0 },
+      { scroll: 0.2, top: 30, left: 295, rotate: -30 },
+      { scroll: 0.4, top: 20, left: 660, rotate: 0 },
+      { scroll: 0.6, top: 20, left: 95, rotate: 0 },
+      { scroll: 0.8, top: 100, left: 50, rotate: 0 },
+      { scroll: 1.0, top: 190, left: 680, rotateX: 290 },
+
     ];
 
+    // 🟡 Fly-in when page loads
+    window.addEventListener("DOMContentLoaded", () => {
+      bird.style.top = "245px";    // Hero section top
+      bird.style.left = "-100px";  // Start from left outside screen
+      bird.style.transform = "rotate(0deg)";
+
+      setTimeout(() => {
+        bird.style.transition = "top 2s ease, left 1s ease, transform 2s ease";
+        bird.style.left = "165px";  // Fly in to hero section
+      }, 300); // Delay before flying in
+    });
+
+    // 🟡 Move bird based on scroll
     window.addEventListener("scroll", () => {
       const scrollY = window.scrollY;
-      const sectionHeight = window.innerHeight;
+      const docHeight = document.body.scrollHeight - window.innerHeight;
+      const scrollPercent = scrollY / docHeight;
 
-      let index = 0;
-      if (scrollY < sectionHeight - 100) {
-        index = 0;
-      } else if (scrollY < sectionHeight * 2 - 100) {
-        index = 1;
-      } else if (scrollY < sectionHeight * 3 - 100) {
-        index = 2;
-      } else if (scrollY < sectionHeight * 4 - 100) {
-        index = 3;
-      } else {
-        index = 4;
+      let currentIndex = 0;
+      for (let i = 0; i < positions.length - 1; i++) {
+        if (scrollPercent >= positions[i].scroll && scrollPercent <= positions[i + 1].scroll) {
+          currentIndex = i;
+          break;
+        }
       }
 
-      const pos = positions[index];
-      bird.style.top = pos.top + "px";
-      bird.style.left = pos.left + "px";
-      bird.style.transform = `rotate(${pos.rotate}deg)`;
+      const start = positions[currentIndex];
+      const end = positions[currentIndex + 1];
+      const range = end.scroll - start.scroll;
+      const progress = (scrollPercent - start.scroll) / range;
+
+      const top = start.top + (end.top - start.top) * progress;
+      const left = start.left + (end.left - start.left) * progress;
+      const rotate = start.rotate + (end.rotate - start.rotate) * progress;
+
+      bird.style.top = `${top}px`;
+      bird.style.left = `${left}px`;
+      bird.style.transform = `rotate(${rotate}deg)`;
     });
 
   </script>
