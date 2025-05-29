@@ -160,8 +160,7 @@
 
     /* About Section */
     .section-container {
-      padding: 4rem 1.5rem;
-      height: 100vh;
+      padding: 15px 20px;
     }
 
     .about-content {
@@ -193,20 +192,17 @@
       background: linear-gradient(90deg, transparent, #0ff, transparent);
     }
 
-    .about-details {
-      background: rgba(255, 255, 255, 0.05);
-      padding: 2.5rem;
-      border-radius: 15px;
-      border: 1px solid rgba(0, 255, 255, 0.1);
-      backdrop-filter: blur(10px);
-    }
+
 
     .lead-text {
-      font-size: 1.25rem;
-      color: #e7e7e7;
+      color: #940000;
       line-height: 1.6;
       margin-bottom: 1.5rem;
       text-align: center;
+    }
+
+    .lead-text p {
+      font-size: 12px;
     }
 
     .about-text {
@@ -254,39 +250,8 @@
       color: #0ff;
     }
 
-    /* Skills & Projects Grid */
-    .skills-grid,
-    .projects-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 2rem;
-      padding: 2rem 0;
-    }
 
-    .skill-card,
-    .project-card {
-      background: linear-gradient(145deg, rgba(0, 255, 255, 0.05), rgba(255, 255, 255, 0.02));
-      backdrop-filter: blur(10px);
-      border-radius: 15px;
-      padding: 2rem;
-      border: 1px solid rgba(0, 255, 255, 0.1);
-      position: relative;
-      overflow: hidden;
-      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    }
 
-    .skill-card::before,
-    .project-card::before {
-      content: '';
-      position: absolute;
-      top: -50%;
-      left: -50%;
-      width: 200%;
-      height: 200%;
-      background: conic-gradient(transparent 135deg, rgb(5, 45, 45) 180deg, transparent 225deg);
-      animation: borderSpin 7s linear infinite;
-      z-index: -1;
-    }
 
     @keyframes borderSpin {
       100% {
@@ -294,11 +259,6 @@
       }
     }
 
-    .skill-card:hover,
-    .project-card:hover {
-      transform: translateY(-8px);
-      box-shadow: 0 10px 30px rgba(29, 127, 127, 0.367);
-    }
 
     .skill-card h3,
     .project-card h3 {
@@ -335,14 +295,13 @@
 
     /* Project Cards */
     .project-card {
-      min-height: 250px;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
     }
 
     .project-links {
-      margin-top: 1.5rem;
+      margin-top: 12px;
       display: flex;
       gap: 1rem;
       flex-wrap: wrap;
@@ -906,6 +865,292 @@
     .menu-backdrop.active {
       display: block;
     }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+      align-items: center;
+    }
+
+    @media (max-width: 900px) {
+      .about-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .about-image {
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .profile-frame {
+      width: 320px;
+      height: 320px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #00d2ff, #3a7bd5);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      box-shadow: 0 0 40px rgba(0, 210, 255, 0.5);
+      position: relative;
+      overflow: hidden;
+      animation: glowPulse 3s infinite alternate;
+    }
+
+    @keyframes glowPulse {
+      0% {
+        box-shadow: 0 0 30px rgba(0, 210, 255, 0.5);
+      }
+
+      100% {
+        box-shadow: 0 0 50px rgba(0, 210, 255, 0.8);
+      }
+    }
+
+    .about-image img {
+      width: 300px;
+      height: 600px;
+      border-radius: 50%;
+    }
+
+    .about-description {
+      margin-top: 2rem;
+    }
+
+    .lead-text {
+      font-size: 1.2rem;
+      color: #e7e7e7;
+      line-height: 1.6;
+      margin-bottom: 1.5rem;
+      text-align: center;
+      background: rgba(34, 101, 101, 0.138);
+      padding: 1rem;
+      border-radius: 10px;
+      border-left: 4px solid #0ff;
+    }
+
+    .about-text {
+      font-size: 1.1rem;
+      color: #f2f2f5;
+      line-height: 1.8;
+      max-width: 100%;
+      text-align: center;
+    }
+
+    .section-title {
+      font-family: "Audiowide", cursive;
+      font-size: 3rem;
+      text-shadow: 0 0 20px rgba(0, 255, 255, 0.5);
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      margin-bottom: 2.5rem;
+      padding-bottom: 0.5rem;
+      position: relative;
+      text-align: center;
+    }
+
+    .section-title::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 100%;
+      max-width: 300px;
+      height: 3px;
+      background: linear-gradient(90deg, transparent, #0ff, transparent);
+    }
+
+    #projects {
+      padding: 0 50px;
+    }
+
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+      gap: 3rem;
+      padding: 2rem 0;
+    }
+
+    .project-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+      margin-bottom: 4rem;
+    }
+
+    .project-card {
+      background: linear-gradient(145deg, rgba(0, 255, 255, 0.05), rgba(255, 255, 255, 0.02));
+      backdrop-filter: blur(10px);
+      border-radius: 15px;
+      border: 1px solid rgba(0, 255, 255, 0.1);
+      position: relative;
+      overflow: hidden;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      opacity: 0;
+      transform: translateY(30px);
+      transition: transform 0.8s ease, opacity 0.8s ease, box-shadow 0.3s ease;
+    }
+
+    .project-card.active {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .project-card.left {
+      transform: translateX(-100px);
+    }
+
+    .project-card.right {
+      transform: translateX(100px);
+    }
+
+    .project-card.left.active {
+      transform: translateX(0);
+    }
+
+    .project-card.right.active {
+      transform: translateX(0);
+    }
+
+    .project-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 10px 30px rgba(29, 127, 127, 0.367);
+    }
+
+    .img-card {
+      min-height: 350px;
+      background-size: cover;
+      background-position: center;
+      display: flex;
+      align-items: flex-end;
+      padding: 2rem;
+    }
+
+    .img-card h3 {
+      background: rgba(0, 0, 0, 0.7);
+      padding: 1rem 1.5rem;
+      border-radius: 8px;
+      font-family: 'Audiowide', cursive;
+      font-size: 1.8rem;
+      text-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
+    }
+
+    .text-card {
+      padding: 2rem;
+    }
+
+    .text-card h3 {
+      font-family: 'Audiowide', cursive;
+      text-shadow: 0 0 20px rgba(0, 255, 255, 0.5);
+      margin-bottom: 1rem;
+      font-size: 1rem;
+    }
+
+    .text-card p {
+      color: rgba(255, 255, 255, 0.9);
+      line-height: 1.8;
+      font-size: 1.1rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .tech-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.8rem;
+      margin: 1.5rem 0 2rem;
+    }
+
+    .tag {
+      background: rgba(0, 255, 255, 0.15);
+      padding: 0.5rem 1.2rem;
+      border-radius: 20px;
+      font-size: 0.95rem;
+      color: #0ff;
+      border: 1px solid rgba(0, 255, 255, 0.3);
+    }
+
+    .project-links {
+      display: flex;
+      gap: 1.5rem;
+    }
+
+    .project-link {
+      display: inline-flex;
+      align-items: center;
+      padding: 0.7rem 1.8rem;
+      background: rgba(0, 255, 255, 0.1);
+      border-radius: 5px;
+      color: #0ff;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      font-weight: 500;
+      font-family: 'Audiowide', cursive;
+    }
+
+    .project-link:hover {
+      background: #0ff;
+      color: #000;
+      box-shadow: 0 0 15px rgba(67, 212, 212, 0.5);
+    }
+
+    /* Responsive design */
+    @media (max-width: 1024px) {
+      .project-row {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+      }
+
+      .project-card.left,
+      .project-card.right {
+        transform: translateY(50px);
+      }
+
+      .project-card.active {
+        transform: translateY(0);
+      }
+    }
+
+    @media (max-width: 768px) {
+      #projects {
+        padding: 0 20px;
+      }
+
+      .section-title {
+        font-size: 2.2rem;
+      }
+
+      .projects-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .img-card {
+        min-height: 300px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .project-card {
+        padding: 1.5rem;
+      }
+
+      .text-card {
+        padding: 1.8rem;
+      }
+
+      .project-links {
+        flex-direction: column;
+        gap: 0.8rem;
+      }
+
+      .project-link {
+        width: 100%;
+        justify-content: center;
+      }
+    }
   </style>
 </head>
 
@@ -963,122 +1208,142 @@
     <section id="about" class="section-container">
       <div class="about-content">
         <h2 class="section-title">About Me</h2>
-        <div class="about-details">
-          <p class="lead-text">Frontend Developer passionate about creating immersive web experiences, currently
-            expanding into full-stack development.</p>
+        <div class="about-grid">
+          <div class="about-image">
+            <img src="img.jpg" alt="">
 
-          <p class="about-text">I'm Manahil Qamar, a frontend specialist with expertise in crafting responsive,
-            user-friendly interfaces. Currently enhancing my skills in backend development through Node.js and MongoDB
-            to build complete web solutions.</p>
-
-
-        </div>
-      </div>
-    </section>
-
-    <section id="skills">
-      <h2 class="section-title">Technical Skills</h2>
-      <div class="skills-grid">
-        <div class="skill-card">
-          <h3>Core Technologies</h3>
-          <p>Frontend development fundamentals</p>
-          <div class="tech-tags">
-            <span class="tag">HTML5</span>
-            <span class="tag">CSS3</span>
-            <span class="tag">JavaScript</span>
-            <span class="tag">React</span>
-            <span class="tag">Redux</span>
           </div>
-        </div>
-        <div class="skill-card">
-          <h3>Currently Learning</h3>
-          <p>Backend development stack</p>
-          <div class="tech-tags">
-            <span class="tag">Node.js</span>
-            <span class="tag">Express</span>
-            <span class="tag">MongoDB</span>
-            <span class="tag">REST API</span>
-            <span class="tag">JWT</span>
-          </div>
-        </div>
-        <div class="skill-card">
-          <h3>Dev Tools</h3>
-          <p>Development workflow essentials</p>
-          <div class="tech-tags">
-            <span class="tag">Git</span>
-            <span class="tag">VS Code</span>
-            <span class="tag">Webpack</span>
-            <span class="tag">Postman</span>
-            <span class="tag">Figma</span>
-          </div>
-        </div>
-      </div>
-    </section>
 
-    <section id="projects">
-      <h2 class="section-title">Featured Projects</h2>
-      <div class="projects-grid">
-        <div class="project-card">
-          <div>
-            <h3>E-commerce Learning Platform</h3>
-            <p>Full-stack application developed during Node.js learning journey, featuring product management and user
-              authentication.</p>
+          <div class="about-description">
+            <p class="lead-text">Frontend Developer passionate about creating immersive web experiences, currently
+              expanding into full-stack development. <br>
+              I'm Manahil Qamar, a frontend specialist with expertise in crafting responsive,
+              user-friendly interfaces. Currently enhancing my skills in backend development to build complete web
+              solutions
+            </p>
+            <div class="tech-tags">
+              <span class="tag">Git</span>
+              <span class="tag">VS Code</span>
+              <span class="tag">Webpack</span>
+              <span class="tag">Postman</span>
+              <span class="tag">Figma</span>
+            </div>
             <div class="tech-tags">
               <span class="tag">React</span>
               <span class="tag">Node.js</span>
               <span class="tag">MongoDB</span>
               <span class="tag">Express</span>
             </div>
-          </div>
-          <div class="project-links">
-            <a href="#" class="project-link">Live Demo</a>
-            <a href="#" class="project-link">Code</a>
-          </div>
-        </div>
-        <div class="project-card">
-          <div>
-            <h3>Learning Progress Tracker</h3>
-            <p>Interactive dashboard to track coding skill development with data visualization features.</p>
             <div class="tech-tags">
               <span class="tag">React</span>
               <span class="tag">Chart.js</span>
               <span class="tag">Firebase</span>
               <span class="tag">SCSS</span>
             </div>
+
           </div>
-          <div class="project-links">
-            <a href="#" class="project-link">Demo</a>
-            <a href="#" class="project-link">Case Study</a>
-          </div>
+
+
         </div>
 
       </div>
-    </section>
 
-    <section id="contact">
-      <h2 class="section-title">Get in Touch</h2>
-      <form class="contact-form">
-        <input type="text" placeholder="Name" required>
-        <input type="email" placeholder="Email" required>
-        <textarea rows="5" placeholder="Your message..." required></textarea>
-        <button type="submit">Send Message</button>
-      </form>
-    </section>
-    <footer class="cyber-footer">
-      <div class="footer-content">
-        <div class="social-links">
-          <a href="#" class="social-link">GitHub</a>
-          <a href="#" class="social-link">LinkedIn</a>
-          <a href="#" class="social-link">CodePen</a>
-          <a href="#" class="social-link">Twitter</a>
+
+  </div>
+  </div>
+  </section>
+
+
+
+
+  <div class="container">
+    <section id="projects">
+      <h2 class="section-title">Featured Projects</h2>
+
+      <div class="projects-grid">
+        <!-- Project 1 -->
+        <div class="project-row">
+          <div class="project-card img-card left"
+            style="background-image: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1550745165-9bc0b252726f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80');">
+          </div>
+
+          <div class="project-card text-card right">
+            <h3>E-commerce Learning Platform</h3>
+            <p>Full-stack application developed during Node.js learning journey, featuring product management and
+              user authentication. This project includes a responsive UI with modern design patterns, secure
+              authentication, and a scalable backend architecture.</p>
+
+            <div class="project-links">
+              <a href="#" class="project-link">Live Demo</a>
+
+            </div>
+          </div>
         </div>
 
-        <div class="footer-info">
-          <p class="copyright">&copy; 2024 Manahil Qamar. All rights reserved.</p>
-          <a href="#home" class="back-to-top">↑ Back to Orbit</a>
+        <!-- Project 2 -->
+        <div class="project-row">
+          <div class="project-card text-card left">
+            <h3>Learning Progress Tracker</h3>
+            <p>Interactive dashboard to track coding skill development with data visualization features. This
+              application helps developers monitor their learning journey, set goals, and visualize progress
+              across multiple technologies and frameworks.</p>
+
+            <div class="project-links">
+              <a href="#" class="project-link">Live Demo</a>
+            </div>
+          </div>
+
+          <div class="project-card img-card right"
+            style="background-image: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1555066931-4365d14bab8c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80');">
+          </div>
+        </div>
+
+        <!-- Project 3 -->
+        <div class="project-row">
+          <div class="project-card img-card left"
+            style="background-image: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1551650975-87deedd944c3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1374&q=80');">
+          </div>
+
+          <div class="project-card text-card right">
+            <h3>Task Management System</h3>
+            <p>A comprehensive task management solution with drag-and-drop interface, team collaboration features,
+              and deadline tracking. Built with modern productivity principles to help teams stay organized and
+              focused on their goals.</p>
+
+
+            <div class="project-links">
+              <a href="#" class="project-link">Live Demo</a>
+            </div>
+          </div>
         </div>
       </div>
-    </footer>
+    </section>
+  </div>
+
+  <section id="contact">
+    <h2 class="section-title">Get in Touch</h2>
+    <form class="contact-form">
+      <input type="text" placeholder="Name" required>
+      <input type="email" placeholder="Email" required>
+      <textarea rows="5" placeholder="Your message..." required></textarea>
+      <button type="submit">Send Message</button>
+    </form>
+  </section>
+  <footer class="cyber-footer">
+    <div class="footer-content">
+      <div class="social-links">
+        <a href="#" class="social-link">GitHub</a>
+        <a href="#" class="social-link">LinkedIn</a>
+        <a href="#" class="social-link">CodePen</a>
+        <a href="#" class="social-link">Twitter</a>
+      </div>
+
+      <div class="footer-info">
+        <p class="copyright">&copy; 2024 Manahil Qamar. All rights reserved.</p>
+        <a href="#home" class="back-to-top">↑ Back to Orbit</a>
+      </div>
+    </div>
+  </footer>
   </div>
 
   <script>
@@ -1322,6 +1587,47 @@
       bird.style.left = `${left}px`;
       bird.style.transform = `rotate(${rotate}deg)`;
     });
+    // Add animation to skill buttons
+    const skillBtns = document.querySelectorAll('.skill-btn');
+    skillBtns.forEach(btn => {
+      btn.addEventListener('mouseenter', () => {
+        btn.style.transform = 'scale(1.05)';
+      });
+
+      btn.addEventListener('mouseleave', () => {
+        btn.style.transform = 'scale(1)';
+      });
+    });
+
+    // Function to check if an element is in the viewport
+    function isInViewport(element) {
+      const rect = element.getBoundingClientRect();
+      return (
+        rect.top <= (window.innerHeight || document.documentElement.clientHeight) * 0.8 &&
+        rect.bottom >= 0
+      );
+    }
+
+    // Function to handle scroll animations
+    function handleScrollAnimations() {
+      const projectCards = document.querySelectorAll('.project-card');
+
+      projectCards.forEach(card => {
+        if (isInViewport(card)) {
+          card.classList.add('active');
+        }
+      });
+    }
+
+    // Initialize on load and on scroll
+    document.addEventListener('DOMContentLoaded', () => {
+      handleScrollAnimations();
+    });
+
+    window.addEventListener('scroll', () => {
+      handleScrollAnimations();
+    });
+
 
   </script>
 </body>
