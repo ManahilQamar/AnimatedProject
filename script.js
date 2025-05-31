@@ -130,7 +130,7 @@ const positions = [
   { scroll: 0.4, top: 20, left: 660, rotate: 0 },
   { scroll: 0.6, top: 20, left: 795, rotate: 0 },
   { scroll: 0.8, top: 130, left: 255, rotate: 0 },
-  { scroll: 1.0, top: 10, left: 680, rotate: 0 },
+  { scroll: 1.0, top: 10, left: 480, rotate: 0 },
 ];
 
 // Fly-in when page loads
