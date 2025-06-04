@@ -4,7 +4,7 @@ const glows = document.querySelectorAll('.glow');
 let scrollTimeout;
 let lastScrollTop = 0;
 let currentHeight = 0;
-const speedFactor = 0.162;
+const speedFactor = 0.2;
 
 function updateThreadHeight() {
   const scrollTop = window.scrollY;
@@ -125,7 +125,7 @@ window.addEventListener('resize', () => {
 // Bird/Butterfly animation
 const bird = document.getElementById("bird");
 const positions = [
-  { scroll: 0, top: 245, left: 185, rotate: 0 },
+  { scroll: 0, top: 245, left: 190, rotate: 0 },
   { scroll: 0.2, top: 50, left: 285, rotate: -30 },
   { scroll: 0.4, top: 20, left: 660, rotate: 0 },
   { scroll: 0.6, top: 20, left: 795, rotate: 0 },
@@ -141,7 +141,7 @@ window.addEventListener("DOMContentLoaded", () => {
 
   setTimeout(() => {
     bird.style.transition = "top 2s ease, left 1s ease, transform 2s ease";
-    bird.style.left = "185px";
+    bird.style.left = "190px";
   }, 300);
 });
 

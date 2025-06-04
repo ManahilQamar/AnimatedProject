@@ -1,0 +1,211 @@
+body {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  overflow: hidden;
+  background: url('gamebg.jpg') no-repeat center center;
+  background-size: cover;
+}
+
+.game-container {
+  position: relative;
+  width: 800px;
+  height: 400px;
+  background: #ecf0f1;
+  border: 5px solid #34495e;
+  overflow: hidden;
+}
+
+/* Doll Styling */
+.doll {
+  position: absolute;
+  top: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100px;
+  height: 150px;
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+.start {
+  background-image: url('doll1.png');
+}
+
+.stop {
+  background-image: url('doll2.png');
+}
+
+/* Guard Styling */
+.guard1,
+.guard2 {
+  position: absolute;
+  top: 30%;
+  transform: translate(-50%, -50%);
+  background-size: contain;
+  background-repeat: no-repeat;
+  width: 60px;
+  height: 60px;
+  animation: idle 5s infinite;
+}
+
+.guard1 {
+  left: 37%;
+  background-image: url('guard1.png');
+}
+
+.guard2 {
+  left: 60%;
+  background-image: url('guard2.png');
+}
+
+@keyframes idle {
+
+  0%,
+  100% {
+    transform: translate(-50%, -50%) scale(1);
+  }
+
+  50% {
+    transform: translate(-50%, -50%) scale(1.1);
+  }
+}
+
+/* Finish Line */
+.finish-line {
+  position: absolute;
+  top: 0;
+  right: 4px;
+  width: 10px;
+  height: 100%;
+  background: red;
+}
+
+/* Player Styling */
+.player {
+  position: absolute;
+  bottom: 90px;
+  /* Adjusted to move player closer to the bottom */
+  left: 20px;
+  width: 40px;
+  height: 40px;
+  background: blue;
+  border-radius: 50%;
+}
+
+/* Button Styling */
+button {
+  padding: 25px;
+  font-size: 36px;
+  margin: 20px;
+  cursor: pointer;
+  border: none;
+  border-radius: 50%;
+  background-color: #ffffff;
+  color: #fff;
+  position: relative;
+  display: inline-block;
+}
+
+button:hover {
+  background-color: #2c3e50;
+}
+
+#moveBtn::after {
+  content: 'O';
+  position: absolute;
+  bottom: 0px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 40px;
+  font-weight: bold;
+  color: blue;
+}
+
+#stopBtn::after {
+  content: 'X';
+  position: absolute;
+  bottom: 0px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 40px;
+  font-weight: bold;
+  color: red;
+}
+
+/* Message Styling */
+.message {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 24px;
+  font-weight: bold;
+  color: #e74c3c;
+  display: none;
+  text-align: center;
+  background: rgba(0, 0, 0, 0.7);
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+.message.win {
+  color: #1fe270;
+}
+
+/* Restart Button Styling */
+#restartBtn {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 20px;
+  background-color: #f44;
+  color: rgb(255, 255, 255);
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+  position: absolute;
+  bottom: 5%;
+  left: 38%;
+
+}
+
+.lose-message.active #restartBtn {
+  display: flex;
+}
+
+/* Firework Animation */
+.firework {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  animation: explode 1.5s ease-out forwards;
+}
+
+@keyframes explode {
+  0% {
+    transform: scale(1);
+    opacity: 1;
+  }
+
+  50% {
+    transform: scale(3);
+    opacity: 0.7;
+  }
+
+  100% {
+    transform: scale(0);
+    opacity: 0;
+  }
+}
+
+.game-name h1 {
+  color: white;
+  font-family: "Audiowide", cursive;
+}
