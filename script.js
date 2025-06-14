@@ -93,7 +93,7 @@ function animate() {
 
     ctx.beginPath();
     ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
-    ctx.fillStyle = 'rgba(0, 255, 204, 0.5)';
+    ctx.fillStyle = '#0ff';
     ctx.fill();
   });
 
@@ -190,3 +190,6 @@ const observer = new IntersectionObserver((entries) => {
 document.querySelectorAll('.image-card, .text-card').forEach(el => {
   observer.observe(el);
 });
+
+
+
