@@ -1146,6 +1146,106 @@ button:hover:before {
   transition-delay: 0.2s;
 }
 
+@media (max-width: 1024px) {
+  .skill.left {
+    margin-left: 100px;
+  }
+
+  .skill.right {
+    margin-right: 100px;
+  }
+
+  .skill p.left {
+    margin-right: 200px;
+  }
+
+  .skill p.right {
+    margin-left: 200px;
+  }
+
+  .skill.left::after {
+    left: -70px;
+    width: 70px;
+  }
+
+  .skill.right::after {
+    right: -60px;
+    width: 70px;
+  }
+}
+
+@media (max-width: 768px) {
+  .skill-wrapper {
+    align-items: center;
+  }
+
+  .skill {
+    align-self: center !important;
+    margin: 20px 0;
+  }
+
+  .skill.left, .skill.right {
+    margin: 0;
+  }
+
+  .skill.left.animate, .skill.right.animate {
+    transform: translateX(0);
+    opacity: 1;
+  }
+
+  .skill p.left,
+  .skill p.right {
+    margin: 10px 0 0 0;
+    bottom: 0;
+    text-align: center;
+  }
+
+  .skill.left::after,
+  .skill.right::after {
+    display: none;
+  }
+}
+@media (max-width: 480px) {
+  .skill-wrapper {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+  }
+
+  .skill {
+    width: 48%;
+    height: 110px;
+    margin: 10px 0;
+    align-self: center !important;
+  }
+
+  .hexagon-bg {
+    width: 60px;
+    height: 50px;
+  }
+
+  .skill img {
+    margin: 10px 55px 0 0;
+    width: 30px;
+    height: 30px;
+  }
+
+  .skill p.left,
+  .skill p.right {
+    font-size: 1rem;
+    margin-top: 10px;
+    text-align: center;
+    right: 25px;
+  }
+
+  .skill.left::after,
+  .skill.right::after {
+    display: none;
+  }
+}
+
+
 :root {
   --clr-success: 3px solid #0ff;
   --clr-error: 3px solid red;
