@@ -81,15 +81,41 @@
       </section>
 
       <section id="skills">
-        <button>My Skills</button>
-        <div class="skills">
-          <button>HTML</button>
-          <button> CSS</button>
-          <button> JavaScript</button>
-          <button>React</button>
-          <button>Tailwind CSS</button>
+        <h2 class="section-title"><span>My Skills</span></h2>
+        <div class="skill-wrapper">
+          <div class="skill left">
+            <div class="hexagon-bg"></div>
+            <img src="html.png" alt="HTML" />
+            <p class="left">HTML</p>
+          </div>
+          <div class="skill right">
+            <div class="hexagon-bg"></div>
+            <img src="css.png" alt="CSS" />
+            <p class="right">CSS</p>
+          </div>
+          <div class="skill left">
+            <div class="hexagon-bg"></div>
+            <img src="js.png" alt="JavaScript" />
+            <p  class="left">JavaScript</p>
+          </div>
+          <div class="skill right">
+            <div class="hexagon-bg"></div>
+            <img src="react.png" alt="React" />
+            <p class="right">ReactJs</p>
+          </div>
+          <div class="skill left">
+            <div class="hexagon-bg"></div>
+            <img src="tailwind.png" alt="Tailwind CSS" />
+            <p class="left">Tailwind</p>
+          </div>
+          <div class="skill right">
+            <div class="hexagon-bg"></div>
+            <img src="nodejs.png" alt="Tailwind CSS" />
+            <p class="right">NodeJs</p>
+          </div>
         </div>
       </section>
+      
 
       <section id="projects">
         <div class="projects-bg"></div>
@@ -102,10 +128,10 @@
           <div class="project-card image-card">
             <div class="project-image">
               <img
-                src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 800 400'%3E%3Crect width='800' height='400' fill='%23112233'/%3E%3Ctext x='400' y='200' font-family='Arial' font-size='30' fill='white' text-anchor='middle'%3EE-Commerce Dashboard%3C/text%3E%3C/svg%3E"
+                src="ecommerce.jpg"
                 alt="E-Commerce Dashboard">
               <div class="project-overlay">
-                <h3>E-Commerce Dashboard</h3>
+                <h3>E-Commerce Website</h3>
               </div>
             </div>
           </div>
@@ -113,10 +139,9 @@
           <!-- Project 2 -->
           <div class="project-card text-card">
             <div class="project-content">
-              <p>A comprehensive fitness application for tracking workouts, nutrition, and progress over time.</p>
+              <p>E-commerce website using React and Tailwind CSS with product listings, cart functionality, and a clean, responsive UI</p>
               <div class="project-links">
-                <a href="#" class="project-link">Live Demo</a>
-                <a href="#" class="project-link">GitHub</a>
+                <a href="https://ecommerceab.netlify.app/" class="project-link">Live Demo</a>
               </div>
             </div>
           </div>
@@ -134,7 +159,7 @@
           <!-- Project 4 -->
           <div class="project-card text-card">
             <div class="project-content">
-              <p>A comprehensive fitness application for tracking workouts, nutrition, and progress over time.</p>
+              <p>A JavaScript-powered Squid Game simulation where players face a series of mini-games, inspired by the popular series, with logic-based challenges and progress tracking.</p>
               <div class="project-links">
                 <a href="squid/squid.html" class="project-link">Live Demo</a>
                 <a href="https://github.com/ManahilQamar/Squid-Game.git" class="project-link">GitHub</a>
@@ -145,9 +170,9 @@
           <!-- Project 5 -->
           <div class="project-card image-card">
             <div class="project-image">
-              <img src="password-generator/password.jpg" alt="Travel Planner">
+              <img src="chitchat.jpg" alt="Travel Planner">
               <div class="project-overlay">
-                <h3>Travel Planner</h3>
+                <h3>ChitChat</h3>
               </div>
             </div>
           </div>
@@ -156,11 +181,11 @@
           <!-- Project 6 -->
           <div class="project-card text-card">
             <div class="project-content">
-              <p>A password generator built using React with options for length, characters, and strength indication.
+              <p>A simple JavaScript-based ChitChat app with real-time messaging, user input, and dynamic chat display.
               </p>
               <div class="project-links">
-                <a href="password-generator/index.html" class="project-link" target="_blank">Live Demo</a>
-                <a href="https://github.com/ManahilQamar/password-generator" class="project-link"
+                <a href="https://chitchatproject.netlify.app/" class="project-link" target="_blank">Live Demo</a>
+                <a href="https://github.com/ManahilQamar/ChitChat.git" class="project-link"
                   target="_blank">GitHub</a>
               </div>
             </div>
@@ -172,8 +197,8 @@
       <section id="contact">
         <h2 class="section-title">Get in Touch</h2>
         <form class="contact-form">
-          <input type="text" placeholder="Name" required>
-          <input type="email" placeholder="Email" required>
+          <input type="text" id="name" placeholder="Enter your name" required autocomplete="off">
+          <input type="email" id="email" placeholder="Enter your email" required autocomplete="off">
           <textarea rows="5" placeholder="Your message..." required></textarea>
           <button type="submit">Send Message</button>
         </form>
