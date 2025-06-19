@@ -363,28 +363,28 @@ button {
   background: none;
   border: none;
   padding: 5px;
-  z-index: 1001;
 }
 
 .hamburger-box {
   width: 30px;
-  height: 24px;
+  height: 45px;
   display: inline-block;
   position: relative;
   bottom: 0.8rem;
-  left: 17rem;
+  
 }
 
 .hamburger-inner {
-  width: 100%;
+  width: 68%;
   height: 2px;
   background-color: white;
   position: absolute;
-  left: 0;
+  right: 14.2rem;
   top: 50%;
+  z-index: 1001;
   transform: translateY(-50%);
   transition: all 0.3s ease;
-  box-shadow: 0 0 5px rgba(0, 255, 255, 0.5);
+ 
 }
 
 .hamburger-inner::before,
@@ -777,10 +777,7 @@ button {
     width: 80px;
   }
 
-  .hamburger-box {
-
-    left: 14rem;
-  }
+  
 }
 
 @media (max-width: 576px) {
@@ -789,8 +786,14 @@ button {
   }
 
   .hamburger-box {
-
-    left: 8rem;
+    width: 30px;
+    height: 45px;
+    display: inline-block;
+    position: relative;
+  }
+  
+  .hamburger-inner {
+    right: 0.2rem;
   }
 
   .hero p {
@@ -864,11 +867,23 @@ button {
     padding: 6px 14px;
     font-size: 12px;
   }
+  .hamburger {
+    left: 120px;
+  }
 
   .hamburger-box {
-
-    left: 7rem;
+    width: 30px;
+    height: 45px;
+    display: inline-block;
+    position: relative;
+    left: 19rem;
   }
+  
+  .hamburger-inner {
+    right: 19.2rem;
+    width: 20px;
+  }
+
 
   .section-title {
     font-size: 1.6rem;
@@ -1223,10 +1238,11 @@ button:hover:before {
   .hexagon-bg {
     width: 60px;
     height: 50px;
+    left: 2rem;
   }
 
   .skill img {
-    margin: 10px 55px 0 0;
+    margin: 10px 1px 0 0;
     width: 30px;
     height: 30px;
   }
@@ -1234,9 +1250,8 @@ button:hover:before {
   .skill p.left,
   .skill p.right {
     font-size: 1rem;
-    margin-top: 10px;
+    margin-top: 15px;
     text-align: center;
-    right: 25px;
   }
 
   .skill.left::after,
