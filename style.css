@@ -658,7 +658,7 @@ bottom: 1rem;
   font-size: 3rem;
   font-family: "Audiowide", cursive;
   text-shadow: 0 0 20px rgba(7, 239, 239, 0.5);
-  margin-bottom: 2rem;
+  margin-bottom: 1rem;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -670,246 +670,22 @@ bottom: 1rem;
   line-height: 1.7;
   background: #2a88a710;
   border-radius: 15px;
-  font-size: 1rem;
 }
 
 .lead-text {
   border-bottom: 2px solid #0ff;
-
   font-size: 1.2rem;
-  margin-bottom: 1.5rem;
   background: rgba(34, 101, 101, 0.1);
   padding: 1rem;
   border-radius: 10px;
 }
 
 .about-text {
-  margin-bottom: 2rem;
-  font-size: 1rem;
   border-radius: 10px;
 
 
 }
 
-@media (max-width: 1024px) {
-  .projects-grid {
-    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-  }
-}
-
-@media (max-width: 992px) {
-  .hero h1 {
-    font-size: 3.5rem;
-  }
-
-  .hero p {
-    font-size: 1.3rem;
-  }
-
-  .section-title {
-    font-size: 2.5rem;
-  }
-}
-
-@media (max-width: 768px) {
-  #main-container {
-    padding: 0 20px;
-  }
-
-  .container {
-    padding: 80px 10px 30px;
-  }
-
-  .hamburger {
-    left: 190px;
-  }
-
-  section {
-    padding: 60px 0;
-  }
-
-  .hero h1 {
-    font-size: 2.8rem;
-  }
-
-  .hero p {
-    font-size: 1.1rem;
-  }
-
-  .btn-shine {
-    top: 15%;
-    font-size: 14px;
-  }
-
-  .projects-grid {
-    grid-template-columns: 1fr;
-    gap: 30px;
-  }
-
-  .section-title {
-    font-size: 2.2rem;
-  }
-
-  .project-card {
-    margin-bottom: 20px;
-  }
-
-  .project-image {
-    height: 180px;
-  }
-
-  .contact-form {
-    padding: 1.5rem;
-  }
-
-  /* Show hamburger and hide desktop nav */
-  .hamburger {
-    display: block;
-  }
-
-  .nav-links:not(.mobile-nav) {
-    display: none;
-  }
-
-  /* Adjust bird size */
-  #bird img {
-    width: 80px;
-  }
-
-  
-}
-
-@media (max-width: 576px) {
-  .hero h1 {
-    font-size: 2.2rem;
-  }
-
-  .hamburger-box {
-    width: 30px;
-    height: 45px;
-    display: inline-block;
-    position: relative;
-  }
-  
-  .hamburger-inner {
-    right: 0.2rem;
-  }
-
-  .hero p {
-    font-size: 1rem;
-  }
-
-  .section-title {
-    font-size: 1.8rem;
-  }
-
-  .section-container {
-    padding: 3rem 1rem;
-  }
-
-  .lead-text {
-    font-size: 1rem;
-  }
-
-  .about-text {
-    font-size: 0.9rem;
-  }
-
-  .project-overlay h3 {
-    font-size: 1.4rem;
-  }
-
-  .project-content p {
-    font-size: 0.9rem;
-  }
-
-  .project-links {
-    flex-direction: column;
-    gap: 10px;
-  }
-
-  .project-link {
-    width: 100%;
-    justify-content: center;
-  }
-
-  .social-links {
-    gap: 1rem;
-  }
-
-  .social-link {
-    padding: 0.4rem 0.8rem;
-    font-size: 0.9rem;
-  }
-
-  /* Hide threads on very small screens */
-  .thread {
-    display: none;
-  }
-
-  #bird img {
-    display: none;
-  }
-
-  .btn-shine {
-    top: 25%;
-  }
-}
-
-@media (max-width: 400px) {
-  .hero h1 {
-    font-size: 1.8rem;
-  }
-
-  .btn-shine {
-    top: 20%;
-    padding: 6px 14px;
-    font-size: 12px;
-  }
- .hamburger {
-  bottom: 22px;
-  left: 19rem;
-  display: flex;
- }
-
-
-  .section-title {
-    font-size: 1.6rem;
-  }
-
-  .projects-grid {
-    gap: 20px;
-  }
-
-  .project-image {
-    height: 150px;
-  }
-
-  #bird img {
-    display: none;
-  }
-
-}
-
-/* Landscape orientation adjustments */
-@media (max-height: 500px) and (orientation: landscape) {
-  .hero {
-    min-height: auto;
-    padding: 80px 0;
-  }
-
-  .hero h1 {
-    font-size: 2.5rem;
-  }
-
-
-
-  .btn-shine {
-    top: 15%;
-    position: relative;
-    margin-top: 20px;
-  }
-}
 
 .scroll-reveal {
   display: flex;
@@ -926,7 +702,7 @@ bottom: 1rem;
 }
 
 .scroll-reveal p {
-  font-size: 1.6rem;
+  font-size: 1.4rem;
   line-height: 1.3;
   max-width: 55ch;
   margin-inline: auto;
@@ -943,7 +719,7 @@ bottom: 1rem;
   -webkit-background-clip: text;
   background-repeat: no-repeat;
   background-size: 0% 100%;
-  background-image: linear-gradient(90deg, #0ff, white);
+  background-image: linear-gradient(90deg, white, #0ff);
   animation: scroll-reveal linear forwards;
   animation-timeline: view();
 }
@@ -971,7 +747,7 @@ bottom: 1rem;
 }
 
 .section-title span {
-  font-size: 2rem;
+  font-size: 3rem;
   font-weight: bold;
 }
 
@@ -1220,4 +996,231 @@ input:not(:placeholder-shown):valid {
 
 input:not(:placeholder-shown):invalid {
   border: var(--clr-error);
+}
+
+
+
+@media (max-width: 1024px) {
+  .projects-grid {
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  }
+}
+
+@media (max-width: 992px) {
+  .hero h1 {
+    font-size: 3.5rem;
+  }
+
+  .hero p {
+    font-size: 1.3rem;
+  }
+
+  .section-title {
+    font-size: 2.5rem;
+  }
+}
+
+@media (max-width: 768px) {
+  #main-container {
+    padding: 0 20px;
+  }
+
+  .container {
+    padding: 80px 10px 30px;
+  }
+
+  .hamburger {
+    left: 190px;
+  }
+
+  section {
+    padding: 60px 0;
+  }
+
+  .hero h1 {
+    font-size: 2.8rem;
+  }
+
+  .hero p {
+    font-size: 1.1rem;
+  }
+
+  .btn-shine {
+    top: 15%;
+    font-size: 14px;
+  }
+
+  .projects-grid {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+
+  .section-title {
+    font-size: 2.2rem;
+  }
+
+  .project-card {
+    margin-bottom: 20px;
+  }
+
+  .project-image {
+    height: 180px;
+  }
+
+  .contact-form {
+    padding: 1.5rem;
+  }
+
+  /* Show hamburger and hide desktop nav */
+  .hamburger {
+    display: block;
+  }
+
+  .nav-links:not(.mobile-nav) {
+    display: none;
+  }
+
+  /* Adjust bird size */
+  #bird img {
+    width: 80px;
+  }
+
+  
+}
+
+@media (max-width: 576px) {
+  .hero h1 {
+    font-size: 2.2rem;
+  }
+
+  .hamburger-box {
+    width: 30px;
+    height: 45px;
+    display: inline-block;
+    position: relative;
+  }
+  
+  .hamburger-inner {
+    right: 0.2rem;
+  }
+
+  .hero p {
+    font-size: 1rem;
+  }
+
+  .section-title {
+    font-size: 1.8rem;
+  }
+
+  .section-container {
+    padding: 3rem 1rem;
+  }
+
+  .lead-text {
+    font-size: 1rem;
+  }
+
+  .about-text {
+    font-size: 0.9rem;
+  }
+
+  .project-overlay h3 {
+    font-size: 1.4rem;
+  }
+
+  .project-content p {
+    font-size: 0.9rem;
+  }
+
+  .project-links {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .project-link {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .social-links {
+    gap: 1rem;
+  }
+
+  .social-link {
+    padding: 0.4rem 0.8rem;
+    font-size: 0.9rem;
+  }
+
+
+
+  #bird img {
+    display: none;
+  }
+
+  .btn-shine {
+    top: 25%;
+  }
+}
+
+@media (max-width: 400px) {
+  .hero h1 {
+    font-size: 1.8rem;
+  }
+
+  .btn-shine {
+    top: 20%;
+    padding: 6px 14px;
+    font-size: 12px;
+  }
+ .hamburger {
+  bottom: 22px;
+  left: 19rem;
+  display: flex;
+ }
+ .scroll-reveal p {
+  font-size: 1rem;
+  line-height: 1.3;
+  max-width: 55ch;
+  margin-inline: auto;
+  text-align: center;
+}
+
+
+  .section-title {
+    font-size: 1.6rem;
+  }
+
+
+  .projects-grid {
+    gap: 20px;
+  }
+
+  .project-image {
+    height: 150px;
+  }
+
+  #bird img {
+    display: none;
+  }
+
+}
+
+/* Landscape orientation adjustments */
+@media (max-height: 500px) and (orientation: landscape) {
+  .hero {
+    min-height: auto;
+    padding: 80px 0;
+  }
+
+  .hero h1 {
+    font-size: 2.5rem;
+  }
+
+
+
+  .btn-shine {
+    top: 15%;
+    position: relative;
+    margin-top: 20px;
+  }
 }
