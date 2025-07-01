@@ -657,7 +657,7 @@ bottom: 1rem;
 .section-title {
   font-size: 3rem;
   font-family: "Audiowide", cursive;
-  text-shadow: 0 0 20px rgba(0, 255, 255, 0.5);
+  text-shadow: 0 0 20px rgba(7, 239, 239, 0.5);
   margin-bottom: 2rem;
   display: flex;
   justify-content: center;
@@ -871,6 +871,7 @@ bottom: 1rem;
   left: 19rem;
   display: flex;
  }
+
 
   .section-title {
     font-size: 1.6rem;
